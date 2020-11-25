@@ -13,8 +13,7 @@
         private readonly IChampionsService championsService;
         private readonly ISpellsService spellsService;
 
-        public PlayersService(IChampionsService championsService
-            , ISpellsService spellsService)
+        public PlayersService(IChampionsService championsService, ISpellsService spellsService)
         {
             this.ddVersion = PublicData.ddVerision;
             this.championsService = championsService;
@@ -32,7 +31,7 @@
                     players.Add(new GokoSite.Data.Models.LoL.Player
                     {
                         Username = participantIdentities[i].Player.SummonerName,
-                        ProfileIconUrl = $"http://ddragon.leagueoflegends.com/cdn/{this.ddVersion}/img/profileicon/{participantIdentities[i].Player.ProfileIcon}.png",                      
+                        ProfileIconUrl = $"http://ddragon.leagueoflegends.com/cdn/{this.ddVersion}/img/profileicon/{participantIdentities[i].Player.ProfileIcon}.png",
                     });
                 }
             }

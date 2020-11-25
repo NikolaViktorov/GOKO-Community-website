@@ -1,14 +1,9 @@
 ﻿namespace GokoSite.Services.Data.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using GokoSite.Data;
-    using GokoSite.Data.Models;
-    using GokoSite.Data.Models.RP;
-    using GokoSite.Web.ViewModels.Forums;
     using GokoSite.Web.ViewModels.Games.DTOs;
     using Microsoft.EntityFrameworkCore;
 

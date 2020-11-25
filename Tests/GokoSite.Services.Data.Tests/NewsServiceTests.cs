@@ -10,7 +10,6 @@
     using GokoSite.Web.ViewModels.News;
     using Microsoft.EntityFrameworkCore;
 
-
     using Xunit;
 
     public class NewsServiceTests
