@@ -1,0 +1,187 @@
+﻿@using GokoSite.Web.ViewModels.Games;
+
+@model HomePageGameViewModel
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">GOKO.GG</h1>
+    <a href="/LOL/Collection" class="btn btn-info text-uppercase">Back</a>
+    
+    <table>
+        <thead>
+            <tr>
+                @if (Model.BlueTeam.State == "Fail")
+                {
+                    <th class="Fail">Defeat</th>
+                }
+                else
+                {
+                    <th class="Win">Victory</th>
+                }
+                <th class="blueTeam">
+                    KDA
+                </th>
+                <th class="blueTeam">
+                    Damage
+                </th>
+                <th class="blueTeam">
+                    CS
+                </th>
+                @*
+                <th class="blueTeam">
+                    Items
+                </th>
+                *@
+            </tr>
+        </thead>
+        <tbody class="Contents">
+            @for (int i = 0; i < 5; i++)
+            {
+            <tr>
+                <td class="blueTeam">
+                    <div class="ChampionImage Cell">
+                        <div>
+                            <div class="Image">
+                                <img src="@Model.BlueTeam.Players[i].Champion.ChampionIconUrl" class="ChampionImage">
+                            </div>
+                            <div class="Level">@Model.BlueTeam.Players[i].Level</div>
+                        </div>
+                    </div>
+                    <div class="SummonerSpell">
+                        <div class="Spell">
+                            <img class="Image" src="@Model.BlueTeam.Players[i].FirstSumSpellUrl" />
+                        </div>
+                        <div class="Spell">
+                            <img class="Image" src="@Model.BlueTeam.Players[i].SecondSumSpellUrl" />
+                        </div>
+                    </div>
+                    <div class="Username">@Model.BlueTeam.Players[i].Username</div>
+                </td>
+                <td class="blueTeam">
+                    @Model.BlueTeam.Players[i].KDA
+                </td>
+                <td class="blueTeam">
+                    @String.Format("{0:n0}", Model.BlueTeam.Players[i].Damage)
+                    <progress class="progress-bar-striped" value="@(Model.BlueTeam.Players[i].Damage)" max="@Model.MaxDmg"></progress>
+                </td>
+                <td class="blueTeam">
+                    @Model.BlueTeam.Players[i].CS
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="Summary">
+        <div class="Team">
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-baron-b.png" />
+                @Model.BlueTeam.BaronsSlain
+            </div>
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-dragon-b.png" />
+                @Model.BlueTeam.DragonsSlain
+            </div>
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-tower-b.png" />
+                @Model.BlueTeam.TurretsDestroyed
+            </div>
+        </div>
+        <div class="summary-graph">
+            <div class="total--container">
+                <div class="textL graph--title">Total Kills</div>
+                <div class="textL graph--data graph--data__left">@Model.BlueTeam.TotalKills</div>
+                <div class="graph--container">
+                    <div class="graph win--team" style="flex:@Model.BlueTeam.TotalKills"></div>
+                    <div class="graph lose--team" style="flex:@Model.RedTeam.TotalKills;"></div>
+                </div>
+                <div class="textL graph--data graph--data__right">@Model.RedTeam.TotalKills</div>
+            </div>
+            <div class="total--container">
+                <div class="textL graph--title">Total Gold</div>
+                <div class="textL graph--data graph--data__left">@Model.BlueTeam.TotalGold</div>
+                <div class="graph--container">
+                    <div class="graph win--team" style="flex:@Model.BlueTeam.TotalGold"></div>
+                    <div class="graph lose--team" style="flex:@Model.RedTeam.TotalGold"></div>
+                </div>
+                <div class="textL graph--data graph--data__right">@Model.RedTeam.TotalGold</div>
+            </div>
+        </div>
+        <div class="Team">
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-baron-r.png" />
+                @Model.RedTeam.BaronsSlain
+            </div>
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-dragon-r.png" />
+                @Model.RedTeam.DragonsSlain
+            </div>
+            <div class="ObjectScore">
+                <img class="" src="//opgg-static.akamaized.net/images/site/summoner/icon-tower-r.png" />
+                @Model.RedTeam.TurretsDestroyed
+            </div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                @if (Model.RedTeam.State == "Fail")
+                {
+                    <th class="Fail">Defeat</th>
+                }
+                else
+                {
+                    <th class="Win">Victory</th>
+                }
+                <th class="redTeam">
+                    KDA
+                </th>
+                <th class="redTeam">
+                    Damage
+                </th>
+                <th class="redTeam">
+                    CS
+                </th>
+                @*
+                <th class="redTeam">
+                    Items
+                </th>
+                *@
+            </tr>
+        </thead>
+        <tbody class="Contents">
+            @for (int i = 0; i < 5; i++)
+            {
+                <tr>
+                    <td class="redTeam">
+                        <div class="ChampionImage Cell">
+                            <div>
+                                <div class="Image __sprite __spc32 __spc32-46 tip">
+                                    <img src="@Model.RedTeam.Players[i].Champion.ChampionIconUrl" class="ChampionImage">
+                                </div>
+                                <div class="Level">@Model.RedTeam.Players[i].Level</div>
+                            </div>
+                        </div>
+                        <div class="SummonerSpell">
+                            <div class="Spell">
+                                <img class="Image" src="@Model.RedTeam.Players[i].FirstSumSpellUrl" />
+                            </div>
+                            <div class="Spell">
+                                <img class="Image" src="@Model.RedTeam.Players[i].SecondSumSpellUrl" />
+                            </div>
+                        </div>
+                        <div class="Username">@Model.RedTeam.Players[i].Username</div>
+                    </td>
+                    <td class="redTeam">
+                        @Model.RedTeam.Players[i].KDA
+                    </td>
+                    <td class="redTeam">
+                        @String.Format("{0:n0}", Model.RedTeam.Players[i].Damage)
+                        <progress class="progress-bar-striped" value="@(Model.RedTeam.Players[i].Damage)" max="@Model.MaxDmg"></progress>
+                    </td>
+                    <td class="redTeam">
+                        @Model.RedTeam.Players[i].CS
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

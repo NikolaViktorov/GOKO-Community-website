@@ -1,0 +1,69 @@
+﻿<div class="row">
+    <div class="jumbotron col-md-12" id="video-container">
+        <div class="heading-container bottom-buffer-md">
+            <h1>Welcome to the GOKO Roleplay info page!</h1>
+        </div>
+
+        <video id="video-background" class="video" autoplay="autoplay" onloadstart="this.volume=0.04">
+            <source src="/videos/rpserver.mp4" type="video/mp4" />
+        </video>
+
+        <div class="row row-cols-2 flex-row rp-home-row">
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/rp/rules.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a href="/RP/Rules" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg"> Server Rules</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/rp/forum.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a href="/RP/Forum" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg"> Forum</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-2 flex-row rp-home-row">
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/rp/players.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a href="/RP/Players" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg">Online Players</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/rp/whitelist.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a href="/RP/WhitelistApps" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg">Whitelist Application</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/rpvideo.js"></script>

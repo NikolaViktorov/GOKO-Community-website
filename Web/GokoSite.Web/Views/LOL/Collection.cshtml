@@ -1,0 +1,92 @@
+﻿@using GokoSite.Web.ViewModels.Games
+
+@model ICollection<CollectionPageGameViewModel>
+
+<main class="mt-3">
+    <h1 class="text-center suls-text-color">GOKO.GG</h1>
+    <div class="button-holder">
+    </div>
+    @if (Model.Count == 0)
+    {
+        <h2 class="text-md-center"> You do not have any games in your collection, try adding some from <a href="/LOL/lolapp" class="btn btn-info text-uppercase">League of Legends match history viewer</a> </h2>
+    }
+    else
+    {
+        <a href="/LOL/lolapp" class="btn btn-info text-uppercase">Back</a>
+    }
+
+    @foreach (var modelState in ViewData.ModelState.Values)
+    {
+        foreach (var error in modelState.Errors)
+        {
+            <p class="error-message-lol">@error.ErrorMessage</p>
+        }
+    }
+
+    @foreach (CollectionPageGameViewModel game in Model)
+    {
+        <table>
+            <tr>
+                @if (game.BlueTeam.State == "Fail")
+                {
+                    <th class="Fail">Defeat</th>
+                    <th class="Fail"></th>
+                    <th></th>
+                    <th class="Win">Victory</th>
+                    <th class="Win"></th>
+                }
+                else
+                {
+                    <th class="Win">Victory</th>
+                    <th class="Win"></th>
+                    <th></th>
+                    <th class="Fail">Defeat</th>
+                    <th class="Fail"></th>
+                }
+            </tr>
+            <tr>
+                <th class="blueTeamNames">Player Names</th>
+                <th class="blueTeamNames">Champion Names</th>
+                <th></th>
+                <th class="redTeamNames">Player Names</th>
+                <th class="redTeamNames">Champion Names</th>
+            </tr>
+            @for (int i = 0; i < 5; i++)
+            {
+                <tr>
+                    <td class="blueTeam">
+                        <img src="@game.BlueTeam.Players[i].ProfileIconUrl" class="playerIcon">
+                        @game.BlueTeam.Players[i].Username
+                    </td>
+                    <td class="blueTeam">
+                        <img src="@game.BlueTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
+                        @game.BlueTeam.Players[i].Champion.ChampionName
+                    </td>
+                    <td></td>
+                    <td class="redTeam">
+                        <img src="@game.RedTeam.Players[i].ProfileIconUrl" class="playerIcon">
+                        @game.RedTeam.Players[i].Username
+                    </td>
+                    <td class="redTeam">
+                        <img src="@game.RedTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
+                        @game.RedTeam.Players[i].Champion.ChampionName
+                    </td>
+                </tr>
+
+            }
+            <tr>
+                <td>
+                    <div id="wrapper">
+                        <div id="first">
+                            <a href="/LOL/CollectionDetails?gameId=@game.GameId&regionId=@game.RegionId" class="btn btn-info text-uppercase">Details</a>
+                        </div>
+                        <div id="second">
+                            <a href="/LOL/Remove?gameId=@game.GameId" class="btn btn-info text-uppercase">Remove From Collection</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+
+</main>

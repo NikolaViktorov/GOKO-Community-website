@@ -1,0 +1,124 @@
+﻿@using GokoSite.Common
+@using GokoSite.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/forum.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/lolapp.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="/">
+                <img class="logo-image" src="~/images/small-logo.png" />
+            </a>
+            <div class="collaps navbar-collapse" id="navbarSupportedContent">
+                @if (this.SignInManager.IsSignedIn(this.User))
+                {
+                    <ul class="navbar-nav ml-auto">
+                        @if (this.User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Administration" asp-action="AdminPanel">Admin Panel</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link" href="/">
+                                    Home
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <div class="dropdown-content">
+                                    <a href="/Home/Contact">Contact</a>
+                                    <a href="/Identity/Account/Manage">Profile</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link" href="/RP/Home">
+                                    GOKO.RP
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <div class="dropdown-content">
+                                    <a href="/RP/Rules">Server rules</a>
+                                    <a href="/RP/Forum">Forum</a>
+                                    <a href="/RP/Players">Online players</a>
+                                    <a href="/RP/WhitelistApps">Applications</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link" href="/LOL/Home">
+                                    GOKO.GG
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <div class="dropdown-content">
+                                    <a href="/LOL/lolapp">Match history</a>
+                                    <a href="/LOL/Collection">Collection</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                                <button type="submit" class="nav-link btn btn-link">Logout</button>
+                            </form>
+                        </li>
+                    </ul> }
+                else
+                {
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                    </ul>}
+            </div>
+        </nav>
+        <div class="top-border-line primary-separator"></div>
+    </header>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </div>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+    <div class="bottom-border-line primary-separator"></div>
+    <footer>
+        <div class="container">
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <script src="~/js/goUpArror.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

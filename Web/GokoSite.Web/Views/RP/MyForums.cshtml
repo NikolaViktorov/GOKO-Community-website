@@ -1,0 +1,55 @@
+﻿@using GokoSite.Web.ViewModels.Forums;
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>This is Goko's forum where you can share some of your ideas for improving the server!</h1>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="no-forums">
+                    <a href="/RP/Forum" class="btn btn-info text-uppercase">Back to all posts!</a>
+                </div>
+            </div>
+            @if (Model.Count > 0)
+            {
+                @foreach (PersonalForumViewModel post in Model)
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="media search-media">
+                                <div class="media-body">
+                                    <div>
+                                        <h4 class="media-heading blue"> @post.ForumTopic </h4>
+                                    </div>
+                                    <p>@post.ForumText</p>
+
+                                    <div class="search-actions text-center">
+                                        <div class="action-buttons bigger-125">
+                                            <a asp-controller="RP" asp-action="Edit" asp-route-id="@post.ForumId" class="btn btn-sm btn-block edit-btn">Edit</a>
+                                        </div>
+                                        <div class="action-buttons bigger-125">
+                                            <a asp-controller="RP" asp-action="Delete" asp-route-id="@post.ForumId" class="btn btn-sm btn-block delete-btn">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row">
+                    <div class="no-forums">
+                        <b> There are no posts yet! Be the first one to post -></b>
+                        <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

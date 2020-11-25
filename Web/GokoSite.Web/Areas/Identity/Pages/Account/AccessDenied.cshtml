@@ -1,0 +1,11 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="p-1 text-danger">You do not have permission to access this page. Go to home page instead - <a href="/">Home</a></p>
+    <img class="error404-img" src="~/images/accessDenied.png" />
+</header>

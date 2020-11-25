@@ -1,0 +1,93 @@
+﻿@using GokoSite.Web.ViewModels.Players;
+
+@model HomePageViewModel
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>Online player names: @Model.PlayersCount</h1>
+        </div>
+        <table class="players-table">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Ping
+                </td>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Ping
+                </td>
+            </tr>
+            @for (int i = 0; i < Model.PlayersCount; i++)
+            {
+                <tr class="">
+                    @if (i + 1 <= Model.PlayersCount - 1)
+                    {
+                        <td class="players-table-td">
+                            @Model.PlayerNames[i]
+                        </td>
+                        @if (Model.PlayerPings[i] > 100)
+                        {
+                            <td class="players-table-td ping-td ping-td-bad">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="players-table-td ping-td ping-td-good">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                        <td class="players-table-td">
+                            @Model.PlayerNames[++i]
+                        </td>
+                        @if (Model.PlayerPings[i] > 100)
+                        {
+                            <td class="players-table-td ping-td ping-td-bad">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="players-table-td ping-td ping-td-good">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td class="players-table-td">
+                            @Model.PlayerNames[i]
+                        </td>
+                        @if (Model.PlayerPings[i] > 100)
+                        {
+                            <td class="players-table-td ping-td ping-td-bad">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="players-table-td ping-td ping-td-good">
+                                @Model.PlayerPings[i]
+                            </td>
+                        }
+                    }
+            </tr>
+            }   
+        </table>
+        @*
+        @foreach (var name in Model.PlayerNames)
+        {
+            <p class="">@name</p>
+        }
+        *@
+
+        <div class="button-holder">
+            <a href="/RP/Home" class="btn btn-info text-uppercase">Go back</a>
+        </div>
+    </div>
+</div>

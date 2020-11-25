@@ -1,0 +1,68 @@
+﻿@using GokoSite.Web.ViewModels.Forums;
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>This is Goko's forum where you can share some of your ideas for improving the server!</h1>
+
+        </div>
+
+
+        <div class="container">
+            @if (Model.Count > 0)
+            {
+            <p>
+                 <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
+                 <a href="/RP/MyForums" class="btn btn-info text-uppercase">See your forum posts!</a>
+            </p>
+
+                @foreach (ForumViewModel post in Model)
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="media search-media">
+                                <div class="media-body">
+                                    <div>
+                                        <h4 class="media-heading blue"> @post.ForumTopic </h4>
+                                    </div>
+                                    <p>@post.ForumText</p>
+
+                                    <div class="search-actions text-center">
+                                        <span class="text-info">Likes: @post.Likes</span>
+                                        @if (post.Liked)
+                                        {
+                                            <div class="action-buttons bigger-125">
+                                                <a asp-controller="RP" asp-action="Like" asp-route-id="@post.ForumId" class="like">
+                                                    <i class="fa fa-heart liked" aria-hidden="true"></i>
+                                                </a>    
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="action-buttons bigger-125">
+                                                <a asp-controller="RP" asp-action="Like" asp-route-id="@post.ForumId" class="like">
+                                                    <i class="fa fa-heart notliked" aria-hidden="true"></i>
+                                                </a>    
+                                            </div>
+                                            
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row">
+                    <div class="no-forums">
+                        <b> There are no posts yet! Be the first one to post -></b>
+                        <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

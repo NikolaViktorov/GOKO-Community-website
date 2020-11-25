@@ -1,0 +1,31 @@
+﻿@using GokoSite.Web.ViewModels.Forums;
+
+@model AddForumModel
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>Here you can share some of your ideas!</h1>
+        </div>
+
+        <form class="mx-auto half-width col-5" method="post" asp-controller="RP" asp-action="AddForum">
+            <div class="top-border-line primary-separator"></div>
+
+            <div class="form-group">
+                <label asp-for="Topic" class="suls-text-color">Topic</label>
+                <input asp-for="Topic" class="form-control" placeholder="Topic...">
+                <span asp-validation-for="Topic" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Text" class="suls-text-color">Your opinion</label>
+                <textarea asp-for="Text" class="form-control" placeholder="Remember be nice!" cols="30" rows="5"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+
+            <div class="top-border-line primary-separator"></div>
+
+            <button type="submit" class="btn forum-add-bg-color">Post!</button>
+        </form>
+    </div>
+</div>

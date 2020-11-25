@@ -1,0 +1,49 @@
+﻿@using GokoSite.Web.ViewModels.News;
+
+@model NewDetailsPageViewModel
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+
+        <div class="newsImage-box">
+            <img class="newsImage-details" src="@Model.Image">
+        </div>
+
+        <div class="newImage-title-box">
+            <div class="jtSCCa">
+                <div class="crPSMM">
+                    <h1 class="fCQbDk"> @Model.Title </h1>
+                </div>
+            </div>
+            <div class="cRqIBK dYRCfL">
+                <time class="dYaFx" datetime="2020-11-10T19:00:00.000Z" class="bRTHLn">@Model.UploadedOn</time>
+                <div class="gLkYks">
+                    <span class="dhCzKp">
+                        <span class="kZKxoP">Author</span>
+                        <span class="QAuEs">@Model.AuthorUsername</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <p></p>
+
+        <section class="cJORtJ">
+            <div class="bQRKpI">
+                <span>@(Model.Content)</span>
+            </div>
+        </section>
+
+        <div class="button-holder">
+            <a href="/LOL/Home" class="btn btn-info text-uppercase">Go Back</a>
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <div class="admin-new-btn">
+                    <a class="btn btn-info text-uppercase" onclick="return confirm('Are you sure?')" asp-route-id="@Model.NewId" asp-area="" asp-controller="Administration" asp-action="RemoveNew">Remove New</a>
+                </div>
+            }
+        </div>
+
+        <p></p>
+    </div>
+</div>

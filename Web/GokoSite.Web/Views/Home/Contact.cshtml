@@ -1,0 +1,78 @@
+﻿@using GokoSite.Web.ViewModels.Home;
+
+@model ContactInputModel
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>Contact us!</h1>
+        </div>
+
+        <div id="fh5co-contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-1 animate-box">
+
+                        <div class="fh5co-contact-info">
+                            <h3>Contact Information</h3>
+                            <ul>
+                                <li class="address">198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+                                <li class="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li>
+                                <li class="email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+                                <li class="url"><a href="http://gettemplates.co">gettemplates.co</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Get In Touch</h3>
+                        <form method="post" asp-controller="Home" asp-action="SendFeedback">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="FirstName">First Name</label>
+                                    <input asp-for="FirstName" class="form-control" placeholder="Your firstname">
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="LastName">Last Name</label>
+                                    <input asp-for="LastName" class="form-control" placeholder="Your lastname">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" class="form-control" placeholder="Your email address">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label asp-for="Subject">Subject</label>
+                                    <input asp-for="Subject" type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label asp-for="Message">Message</label>
+                                    <textarea asp-for="Message" name="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Send Message" class="btn btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@using GokoSite.Web.ViewModels.News;
+
+<div class="row">
+    <div class="jumbotron col-md-12">
+        <div class="heading-container bottom-buffer-md">
+            <h1>Welcome to the GOKO League of Legends matches app!</h1>
+        </div>
+
+        <h2 style="text-align:center; font-size: 40px;">Recent news!</h2>
+
+        <div class="slideshow-container">
+            @if (Model.Count == 0)
+            {
+                <div class="text-center">
+                    <h1>
+                        There are no news currently!
+                    </h1>
+                </div>
+            }
+            else
+            {
+                @foreach (NewHomePageViewModel newI in Model)
+                {
+                    <div class="mySlides">
+                        <img class="newsImage" src="@newI.Image">
+                        <div class="news-title">@newI.Title</div>
+                        <a href="/LOL/New?newId=@newI.NewId" class="btn btn-info text-uppercase news-btn">See more</a>
+                    </div>
+                }
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            }
+        </div>
+        <br>
+
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            @for (int i = 1; i <= Model.Count; i++)
+            {
+                <span class="dot" onclick="currentSlide(@i)"></span>
+            }
+        </div>
+
+        <div class="heading-container bottom-buffer-md">
+        </div>
+
+        <div class="row row-cols-1 flex-row lol-home-row">
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/lol/lol.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a asp-controller="LOL" asp-action="lolapp" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg">League Of Legends match viewer </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rp-home-page-item-box">
+                <div class="rp-home-page-img-box">
+                    <img class="rp-home-page-img" src="~/images/lol/collection.jpg" />
+                </div>
+                <div class="rp-home-page-content-box">
+                    <div class="button-holder">
+                        <a asp-controller="LOL" asp-action="Collection" class="btn-border btn-rp-home btn-primaryrp">
+                            <span class="btn-rp btn-primaryrp btn-lg">Collection</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/lolSlider.js"></script>

@@ -1,0 +1,538 @@
+﻿.hidden {
+    display: none;
+}
+.playerIcon {
+    width: 35px;
+    border-radius: 8px;
+}
+
+td {
+    color: black;
+    font-size: 18px;
+}
+
+.Win {
+    background-color: rgb(21, 170, 21);
+}
+
+.Fail {
+    background-color: rgb(233, 39, 39);
+}
+.Team {
+    display: table-cell;
+    height: 30px;
+    vertical-align: middle;
+    padding-right: 10px;
+    text-align: right;
+    line-height: 30px;
+}
+.summary-graph {
+    flex: 0 1 40%;
+}
+
+.redTeam {
+    background-color: rgb(254, 119, 121);
+}
+
+.blueTeam {
+    background-color: #4aa1d2;
+}
+
+.blueTeamNames {
+    background-color: rgb(54, 122, 207);
+}
+
+.redTeamNames {
+    background-color: rgb(213, 63, 63);
+}
+
+td, th {
+    border: 1px solid rgb(43, 43, 43);
+    text-align: left;
+    padding: 16px;
+    color: black;
+}
+
+.ObjectScore {
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+    margin-right: 10px;
+}
+
+.summary-graph > .total--container:first-child {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.summary-graph > .total--container {
+    display: flex;
+    justify-content: center;
+    padding: 0 8px;
+}
+
+.summary-graph>.total--container>.graph--title {
+    text-align: left;
+    width: 75px;
+}
+
+.summary-graph>.total--container>.text {
+    font-size: 10px;
+    color: #222222;
+}
+
+.summary-graph>.total--container>.graph--data__left {
+    text-align: right;
+}
+
+.summary-graph>.total--container>.graph--data {
+    width: 40px;
+}
+
+.summary-graph>.total--container>.textL {
+    font-size: 12px;
+    color: white;
+}
+
+.summary-graph>.total--container>.graph--container>.lose--team {
+    background-color: #d05a53;
+    margin-right: 4px;
+}
+
+.summary-graph>.total--container>.graph--container>.graph {
+    flex: 1;
+    height: 13px;
+}
+
+.summary-graph>.total--container>.graph--container>.win--team {
+    background-color: #548dca;
+    margin-left: 4px;
+}
+
+.summary-graph>.total--container>.graph--data__right {
+    text-align: left;
+}
+
+.summary-graph>.total--container>.graph--container {
+    flex: 0 1 290px;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    margin: 0 3px;
+}
+
+.ObjectScore img {
+    height: 24px;
+}
+
+.Summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 79.5%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.error-message-lol {
+    color: #DC143C;
+}
+.mySlides {
+    display: none
+}
+
+.game-table {
+    display: flex;
+}
+
+.newsImage {
+    overflow: hidden;
+    width: 100%;
+    height: 550px;
+    vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.lol-home-row {
+    margin-left: 10%;
+    margin-right: auto;
+}
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.news-title {
+    color: #f2f2f2;
+    font-size: 25px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    font-family:'Times New Roman';
+    font-style:italic;
+    width: 100%;
+    text-align: center;
+}
+
+.admin-new-btn {
+    text-align: right;
+}
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.lol-menu-heading {
+    float: left;
+}
+
+.lol-button {
+    margin-left: 15px;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next, .text {
+        font-size: 11px
+    }
+}
+
+.news-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+.newsImage-box {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+}
+
+.newsImage-details {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.newsImage-title-box {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 60px;
+    z-index: 2;
+}
+
+.jtSCCa {
+    box-sizing: border-box;
+    background-color: rgb(0, 18, 22);
+    width: 100%;
+    border-width: 0px 1px 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-color: rgb(36, 44, 54);
+    border-bottom-color: rgb(36, 44, 54);
+    border-left-color: rgb(36, 44, 54);
+    border-image: initial;
+    border-top-style: initial;
+    border-top-color: initial;
+}
+
+.crPSMM {
+    display: flex;
+    align-items: flex-start;
+}
+
+.fCQbDk {
+    max-width: 90%;
+    text-align: center;
+    flex: 1 0 auto;
+    padding-bottom: 0.25em;
+    font-weight: 800;
+    margin: -0.5em 15px 0px; /* This */
+    z-index: 3; /* This */
+    font-size: 3.75rem;
+    letter-spacing: 3px;
+    line-height: 0.9;
+    font-style: italic; /* This */
+}
+
+.cRqIBK {
+    border-top: 1px solid rgb(36, 44, 54);
+    color: rgb(93, 97, 102);
+    background-color: rgb(0, 18, 22);
+    align-items: center;
+}
+
+.dYRCfL {
+    display: flex;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.gLkYks {
+    text-align: center;
+    flex: 5 1 auto;
+    width: 100%;
+    border-width: 0px 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-image: initial;
+    border-right-color: rgb(36, 44, 54);
+    border-left-color: rgb(36, 44, 54);
+    border-top-style: initial;
+    border-top-color: initial;
+    border-bottom-style: initial;
+    border-bottom-color: initial;
+    padding: 15px 0px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(0, 18, 22);
+}
+
+.dhCzKp {
+    box-sizing: border-box;
+}
+
+.QAuEs {
+    color: rgb(208, 168, 92);
+}
+
+.dYaFx {
+    white-space: nowrap;
+    padding: 0px 30px 0px 40px;
+}
+
+.cJORtJ {
+    box-sizing: border-box;
+    display: flex;
+    width: 80%;
+    max-width: 1560px;
+    background-color: #2b2b2b;
+    margin: 0px auto;
+    padding: 10px 30px;
+    margin-right: 70%;
+    margin-left: 9.1%;
+    border: solid;
+    border-color: rgb(36, 44, 54);
+    border-width: 2px;
+}
+
+.bQRKpI {
+    flex: 1 1 0%;
+    width: 40%;
+    font-size: 1.475rem;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    text-align: left;
+    white-space: pre-line
+}
+
+.gototop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+    .gototop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .gototop a {
+        width: 50px;
+        height: 50px;
+        display: table;
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+        text-align: center;
+    }
+
+        .gototop a i {
+            height: 50px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .gototop a:hover, .gototop a:active, .gototop a:focus {
+            text-decoration: none;
+            outline: none;
+        }
+
+.icon-arrow-up:before {
+    content: "\e096";
+}
+
+.SummonerSpell {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.Spell {
+    margin-top: 10px;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+}
+    .Spell > .Image {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+    }
+
+.tdContent {
+    display: inline;
+}
+
+.ChampionImage {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    vertical-align: middle;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.Username {
+    display: inline-block;
+    margin-top: 2px;
+    padding-left: 20px;
+}
+
+.Cell {
+    padding: 1px 0;
+    vertical-align: middle;
+}
+    .Cell.ChampionImage {
+        padding-right: 4px;
+    }
+        .Cell.ChampionImage > div {
+            position: relative;
+            display: block;
+        }
+        .Cell.ChampionImage > div > .Image {
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+            .Cell.ChampionImage > div > .Level {
+                position: absolute;
+                bottom: -10px;
+                right: 23px;
+                width: 15px;
+                height: 15px;
+                background: url("https://opgg-static.akamaized.net/images/site/summoner/levelholder.png");
+                color: #ddd;
+                font-size: 10px;
+                font-family: "Tahoma";
+                text-align: center;
+                line-height: 15px;
+            }
+.details-error-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 45%;
+}
