@@ -2,15 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using GokoSite.Data;
-    using GokoSite.Data.Models;
-    using GokoSite.Data.Models.News;
     using GokoSite.Services.Data.StaticData;
-    using GokoSite.Web.ViewModels.News;
-    using Microsoft.EntityFrameworkCore;
     using RiotSharp;
     using RiotSharp.Endpoints.MatchEndpoint;
     using Xunit;
@@ -46,6 +40,32 @@
 
             Assert.Equal(firstTeamTotalExpectedGold, firstTeamResult);
             Assert.Equal(secondTeamTotalExpectedGold, secondTeamResult);
+        }
+
+        [Fact]
+        public void GetTotalGoldByPlayersShouldThrowArgumentNullExceptionIfGivenInvalidParticipantIdentities()
+        {
+            var service = new TeamsService();
+
+            Assert.Throws<ArgumentNullException>(() => service.GetTotalGoldByPlayers(null, new List<Participant>(), 100));
+        }
+
+        [Fact]
+        public void GetTotalGoldByPlayersShouldThrowArgumentNullExceptionIfGivenInvalidParticipants()
+        {
+            var service = new TeamsService();
+
+            Assert.Throws<ArgumentNullException>(() => service.GetTotalGoldByPlayers(new List<ParticipantIdentity>(), null, 100));
+        }
+
+        [Fact]
+        public void GetTotalGoldByPlayersShouldThrowArgumentExceptionIfGivenInvalidTeamId()
+        {
+            int invalidTeamId = -31231;
+
+            var service = new TeamsService();
+
+            Assert.Throws<ArgumentException>(() => service.GetTotalGoldByPlayers(new List<ParticipantIdentity>(), new List<Participant>(), invalidTeamId));
         }
     }
 }

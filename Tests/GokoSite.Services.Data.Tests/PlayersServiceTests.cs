@@ -1,14 +1,11 @@
 ﻿namespace GokoSite.Services.Data.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using GokoSite.Data;
     using GokoSite.Services.Data.StaticData;
     using GokoSite.Web.ViewModels.Games.DTOs;
-    using Microsoft.EntityFrameworkCore;
     using Moq;
     using RiotSharp;
     using RiotSharp.Endpoints.MatchEndpoint;

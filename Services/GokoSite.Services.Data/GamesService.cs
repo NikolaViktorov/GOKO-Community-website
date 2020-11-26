@@ -49,9 +49,16 @@
 
         public async Task<Match> GetGameAsync(long gameId, RiotSharp.Misc.Region region)
         {
-            var game = await this.Api.Match.GetMatchAsync(region, gameId);
+            try
+            {
+                var game = await this.Api.Match.GetMatchAsync(region, gameId);
 
-            return game;
+                return game;
+            }
+            catch (RiotSharpException ex)
+            {
+                return null;
+            }
         }
 
         public async Task<ICollection<Match>> GetGamesAsync(GetGamesInputModel input)
