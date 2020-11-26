@@ -7,7 +7,5 @@
     public interface ITeamsService
     {
         long GetTotalGoldByPlayers(List<ParticipantIdentity> participantIdentities, List<Participant> participants, int teamId);
-
-        int GetTotalKillsByPlayers(List<ParticipantIdentity> participantIdentities, List<Participant> participants, int teamId);
     }
 }

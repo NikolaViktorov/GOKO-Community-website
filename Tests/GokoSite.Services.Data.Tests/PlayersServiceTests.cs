@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using GokoSite.Data;
+    using GokoSite.Services.Data.StaticData;
     using GokoSite.Web.ViewModels.Games.DTOs;
     using Microsoft.EntityFrameworkCore;
     using Moq;
@@ -23,7 +24,7 @@
         {
             this.championsService = new Mock<IChampionsService>();
             this.spellsService = new Mock<ISpellsService>();
-            this.api = RiotApi.GetDevelopmentInstance("RGAPI-a62323f4-d568-47b3-b4c7-5db6e58d645a");
+            this.api = RiotApi.GetDevelopmentInstance(PublicData.apiKey);
         }
 
         [Fact]

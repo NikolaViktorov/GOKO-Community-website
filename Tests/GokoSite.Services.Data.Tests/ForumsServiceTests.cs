@@ -347,7 +347,7 @@
             };
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-    .UseInMemoryDatabase("forumTestGetPost");
+                .UseInMemoryDatabase("forumTestGetPost");
             var db = new ApplicationDbContext(options.Options);
 
             await db.Forums.AddAsync(newForum);

@@ -21,10 +21,5 @@
 
             return totalGold;
         }
-
-        public int GetTotalKillsByPlayers(List<ParticipantIdentity> participantIdentities, List<Participant> participants, int teamId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
