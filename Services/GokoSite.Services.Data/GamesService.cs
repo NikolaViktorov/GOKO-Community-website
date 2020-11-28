@@ -63,13 +63,28 @@
 
         public async Task<ICollection<Match>> GetGamesAsync(GetGamesInputModel input)
         {
+            if (input.Count < 0 || input.Count > 10)
+            {
+                throw new ArgumentException("Count must be between 0 and 10!");
+            }
+
+            if (input.RegionId < 0 || input.RegionId > 10)
+            {
+                throw new ArgumentException("Region Id must be between 0 and 10!");
+            }
+
+            if (input.Username.Length <= 0 || input.Username.Length > 16) // Leagues max name length is 16!
+            {
+                throw new ArgumentException("Username must be between 1 and 16 characters long!");
+            }
+
             RiotSharp.Misc.Region region = (RiotSharp.Misc.Region)input.RegionId;
 
             var summoner = await this.GetBasicSummonerDataAsync(input.Username, region);
 
             if (summoner == null)
             {
-                throw new ArgumentException("Wrong summoner name!");
+                throw new ArgumentNullException("summonerName", "Wrong summoner name!");
             }
 
             var matches = await this.Api.Match.GetMatchListAsync(region, summoner.AccountId);
@@ -88,6 +103,16 @@
 
         public async Task<IEnumerable<HomePageGameViewModel>> GetModelByMatches(ICollection<Match> games, int regionId)
         {
+            if (regionId < 0 || regionId > 10)
+            {
+                throw new ArgumentException("Region Id must be between 0 and 10!");
+            }
+
+            if (games == null || games?.Count == 0)
+            {
+                throw new ArgumentNullException("games", "Games must have games in it!");
+            }
+
             var viewModel = new List<HomePageGameViewModel>();
 
             foreach (var game in games)
@@ -114,6 +139,11 @@
 
         public async Task<HomePageGameViewModel> GetModelByGameId(long gameId, int regionId, string userId) // More eficient..
         {
+            if (regionId < 0 || regionId > 10)
+            {
+                throw new ArgumentException("Region Id must be between 0 and 10!");
+            }
+
             var region = (RiotSharp.Misc.Region)regionId;
             var game = await this.Api.Match.GetMatchAsync(region, gameId);
 
@@ -158,7 +188,6 @@
             return viewModel;
         }
 
-        // Reorganize the code... FIXME
         public async Task AddGameToCollection(long gameId, int regionId)
         {
             var curGame = await this.GetGameAsync(gameId, (RiotSharp.Misc.Region)regionId);
