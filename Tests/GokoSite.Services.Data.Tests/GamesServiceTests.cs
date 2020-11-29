@@ -15,20 +15,24 @@ namespace GokoSite.Services.Data.Tests
     using Microsoft.EntityFrameworkCore;
     using Moq;
     using RiotSharp;
-    using RiotSharp.Endpoints.MatchEndpoint;
-    using RiotSharp.Misc;
+
     using Xunit;
+
     using Region = RiotSharp.Misc.Region;
 
     public class GamesServiceTests
     {
         private Mock<ITeamsService> teamsService;
-        private Mock<IPlayersService> playersService;
+        private IPlayersService playersService;
         private RiotApi api;
+        private Mock<IChampionsService> championsService;
+        private Mock<ISpellsService> spellsService;
 
         public GamesServiceTests()
         {
-            this.playersService = new Mock<IPlayersService>();
+            this.championsService = new Mock<IChampionsService>();
+            this.spellsService = new Mock<ISpellsService>();
+            this.playersService = new PlayersService(this.championsService.Object, this.spellsService.Object);
             this.teamsService = new Mock<ITeamsService>();
             this.api = RiotApi.GetDevelopmentInstance(PublicData.apiKey);
         }
@@ -46,7 +50,7 @@ namespace GokoSite.Services.Data.Tests
             int expectedProfileIconId = 4813;
             string expectedAccountId = "-0TmH2cZiK9xbRvB8GjSArr79ZNl2eWKLwuyFSHITqr8ow";
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var result = await service.GetBasicSummonerDataAsync(username, region);
 
@@ -67,7 +71,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetWrong");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var result = await service.GetBasicSummonerDataAsync(username, region);
 
@@ -90,7 +94,7 @@ namespace GokoSite.Services.Data.Tests
             string seventhParticipantExpectedUsername = "lnvictum";
             int firstTeamThirdBanChampionId = 58;
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var result = await service.GetGameAsync(gameId, region);
 
@@ -114,7 +118,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGet");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var result = await service.GetGameAsync(gameId, region);
 
@@ -151,7 +155,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var games = (await service.GetGamesAsync(input)).ToList();
 
@@ -185,7 +189,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await service.GetGamesAsync(input));
         }
@@ -208,7 +212,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetGamesAsync(input));
         }
@@ -238,7 +242,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetGamesAsync(input));
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetGamesAsync(secondInput));
@@ -258,21 +262,13 @@ namespace GokoSite.Services.Data.Tests
                 RegionId = 1, // Eune
             };
 
-            GetGamesInputModel secondInput = new GetGamesInputModel()
-            {
-                Username = "Nikolcho",
-                Count = regionId,
-                RegionId = 1, // Eune
-            };
-
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetGamesAsync(input));
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetGamesAsync(secondInput));
         }
 
         [Fact]
@@ -299,7 +295,7 @@ namespace GokoSite.Services.Data.Tests
                     .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             var result = (await service.GetModelByMatches(games, regionId)).ToList();
 
@@ -327,7 +323,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetModelByMatches(games, regionId));
         }
@@ -341,7 +337,7 @@ namespace GokoSite.Services.Data.Tests
                 .UseInMemoryDatabase("lolSummonerGetMatches");
             var db = new ApplicationDbContext(options.Options);
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await service.GetModelByMatches(null, 2));
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await service.GetModelByMatches(collectionWithoutGames, 2));
@@ -352,6 +348,60 @@ namespace GokoSite.Services.Data.Tests
         {
             var riotGameId = 2657118595;
             var regionId = 1;
+
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+            var game = new Game()
+            {
+                RiotGameId = riotGameId,
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolGetMatcheByGameId");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.Games.AddAsync(game);
+            await db.UserGames.AddAsync(new UserGames
+            {
+                UserId = user.Id,
+                GameId = game.GameId,
+            });
+            await db.SaveChangesAsync();
+
+            var userId = user.Id;
+
+            var expectedGameStats = await this.api.Match.GetMatchAsync(Region.Eune, riotGameId);
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            var result = await service.GetModelByGameId(riotGameId, regionId, userId);
+
+            Assert.NotNull(result);
+            Assert.NotNull(result.BlueTeam);
+            Assert.NotNull(result.RedTeam);
+            Assert.IsType<TeamDTO>(result.BlueTeam);
+            Assert.IsType<TeamDTO>(result.BlueTeam);
+            Assert.IsType<HomePageGameViewModel>(result);
+            Assert.Equal(riotGameId, result.GameId);
+            Assert.Equal(expectedGameStats.Teams[0].DragonKills, result.BlueTeam.DragonsSlain);
+            Assert.Equal(expectedGameStats.Teams[1].DragonKills, result.RedTeam.DragonsSlain);
+            Assert.Equal(expectedGameStats.Teams[0].BaronKills, result.BlueTeam.BaronsSlain);
+            Assert.Equal(expectedGameStats.Teams[1].BaronKills, result.RedTeam.BaronsSlain);
+            Assert.Equal(expectedGameStats.Teams[0].Win, result.BlueTeam.State);
+            Assert.Equal(expectedGameStats.Teams[1].Win, result.RedTeam.State);
+        }
+
+        [Theory]
+        [InlineData(-7)]
+        [InlineData(33)]
+        [InlineData(11)]
+        [InlineData(-4499)]
+        public async Task GetModelByGameIdShouldThrowArgumentExceptionIfGivenInvalidRegionId(int regionId)
+        {
+            var riotGameId = 2657118595;
 
             var user = new ApplicationUser()
             {
@@ -377,11 +427,272 @@ namespace GokoSite.Services.Data.Tests
 
             var userId = user.Id;
 
-            var service = new GamesService(db, this.playersService.Object, this.teamsService.Object);
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
-            var result = await service.GetModelByGameId(riotGameId, regionId, userId);
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetModelByGameId(riotGameId, regionId, userId));
+        }
 
-            Assert.NotNull(result);
+        [Theory]
+        [InlineData(2657118595, 1)]
+        [InlineData(2652692459, 1)]
+        [InlineData(2655757524, 1)]
+        [InlineData(4503146831, 2)]
+        public async Task GetModelByGameIdShouldThrowArgumentExceptionIfGameWithThatIdIsNotInDatbase(long gameId, int regionId)
+        {
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolSummonerGetMatcheByIdOfGame");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetModelByGameId(gameId, regionId, userId));
+        }
+
+        [Theory]
+        [InlineData(2657118595, 1)]
+        [InlineData(2652692459, 1)]
+        [InlineData(2655757524, 1)]
+        [InlineData(4503146831, 2)]
+        public async Task GetModelByGameIdShouldThrowInvalidOperationExceptionIfGameWithThatIdIsNotInUsersCollection(long gameId, int regionId)
+        {
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+            var game = new Game()
+            {
+                RiotGameId = gameId,
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolSummonerGetMatcheByGameId");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.Games.AddAsync(game);
+            await db.SaveChangesAsync();
+
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await service.GetModelByGameId(gameId, regionId, userId));
+        }
+
+        [Fact]
+        public async Task AddGameToCollectionShouldAddGameToDatabase()
+        {
+            var validGameId = 2657118595;
+            int regionId = 1;
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToCollection");
+            var db = new ApplicationDbContext(options.Options);
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            var expectedGame = await this.api.Match.GetMatchAsync(Region.Eune, validGameId);
+            var expectedCollectionGameCount = 1;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await service.AddGameToCollection(validGameId, regionId);
+
+            var resultGame = await db.Games.FirstOrDefaultAsync();
+            var firstPlayer = resultGame.Teams.First().Players.First();
+            var lastPlayer = resultGame.Teams.Last().Players.Last();
+            var firstPlayerChampion = await db.ChampionsStatic.FirstOrDefaultAsync(c => c.ChampionId == firstPlayer.PlayerChampions.First().ChampionId);
+            var lastPlayerChampion = await db.ChampionsStatic.FirstOrDefaultAsync(c => c.ChampionId == lastPlayer.PlayerChampions.First().ChampionId);
+
+            Assert.NotNull(resultGame);
+            Assert.NotNull(resultGame.Teams);
+            Assert.NotNull(resultGame.Teams[0].Players);
+            Assert.NotNull(resultGame.Teams[1].Players);
+            Assert.NotNull(resultGame.Teams[0]);
+            Assert.NotNull(resultGame.Teams[1]);
+            Assert.Equal(expectedCollectionGameCount, await db.Games.CountAsync());
+            Assert.Equal(expectedGame.GameId, resultGame.RiotGameId);
+            Assert.Equal(expectedGame.Teams.First().Win, resultGame.Teams.First().State);
+            Assert.Equal(expectedGame.Teams.Last().Win, resultGame.Teams.Last().State);
+            Assert.Equal(expectedGame.ParticipantIdentities.First().Player.SummonerName, firstPlayer.Username);
+            Assert.Equal(expectedGame.ParticipantIdentities.Last().Player.SummonerName, lastPlayer.Username);
+            Assert.Equal(expectedGame.Participants.First().ChampionId, int.Parse(firstPlayerChampion.ChampionRiotId));
+            Assert.Equal(expectedGame.Participants.Last().ChampionId, int.Parse(lastPlayerChampion.ChampionRiotId));
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(12)]
+        [InlineData(18)]
+        [InlineData(-12313)]
+        public async Task AddGameToCollectionShouldThrowArgumentExceptionIfGivenInvalidRegionId(int regionId)
+        {
+            var validGameId = 2657118595;
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolSummonerGetMatches");
+            var db = new ApplicationDbContext(options.Options);
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.AddGameToCollection(validGameId, regionId));
+        }
+
+        [Fact]
+        public async Task AddGameToUserShouldAddTheGameToGivenUserById()
+        {
+            var validGameId = 2657118595;
+            int regionId = 1;
+
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await service.AddGameToCollection(validGameId, regionId);
+            var gameId = (await db.Games.FirstOrDefaultAsync(g => g.RiotGameId == validGameId)).GameId;
+
+            await service.AddGameToUser(userId, validGameId);
+
+            var userGames = await db.UserGames.FirstOrDefaultAsync();
+
+            Assert.NotNull(userGames);
+            Assert.Equal(userId, userGames.UserId);
+            Assert.Equal(gameId, userGames.GameId);
+        }
+
+        [Theory]
+        [InlineData(-513513)]
+        [InlineData(0)]
+        [InlineData(31)]
+        [InlineData(-114)]
+        public async Task AddGameToUserShouldThrowArgumentExceptionIfGivenInvalidGameId(int gameId)
+        {
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.AddGameToUser(userId, gameId));
+        }
+
+        [Theory]
+        [InlineData("fwkafeijiawjfei")]
+        [InlineData("Some_Rela")]
+        [InlineData("fake_id")]
+        [InlineData(null)]
+        public async Task AddGameToUserShouldThrowArgumentExceptionIfGivenInvalidUserId(string userId)
+        {
+            var validGameId = 2657118595;
+            int regionId = 1;
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+    .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+            await service.AddGameToCollection(validGameId, regionId);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.AddGameToUser(userId, validGameId));
+        }
+
+        [Fact]
+        public async Task GetGameCountShouldReturnCorrectNumberOfGamesInUsersCollection()
+        {
+            var validGameId = 2657118595;
+            var secondGameId = 2652692459;
+            int regionId = 1;
+
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolGameCount");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            var userId = user.Id;
+            int expectedGameCount = 2;
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+            await service.AddGameToCollection(validGameId, regionId);
+            await service.AddGameToUser(userId, validGameId);
+            await service.AddGameToCollection(secondGameId, regionId);
+            await service.AddGameToUser(userId, secondGameId);
+
+            var result = service.GetGameCount(userId);
+
+            Assert.Equal(expectedGameCount, result);
+        }
+
+        [Theory]
+        [InlineData("fwkafeijiawjfei")]
+        [InlineData("Some_Rela")]
+        [InlineData("fake_id")]
+        [InlineData(null)]
+        public void GetGamesCountShouldThrowArgumentExceptionIfGivenInvalidUserId(string userId)
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            Assert.Throws<ArgumentException>(() => service.GetGameCount(userId));
         }
     }
 }

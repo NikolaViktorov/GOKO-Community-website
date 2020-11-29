@@ -10,6 +10,7 @@
     using GokoSite.Services.Data.StaticData;
     using GokoSite.Web.ViewModels.Games;
     using GokoSite.Web.ViewModels.Games.DTOs;
+    using Microsoft.EntityFrameworkCore;
     using RiotSharp;
     using RiotSharp.Endpoints.MatchEndpoint;
     using RiotSharp.Endpoints.SummonerEndpoint;
@@ -151,7 +152,7 @@
 
             if (dbGame == null)
             {
-                throw new ArgumentNullException("gameId", "Game with that Game Id does not exist in the database!");
+                throw new ArgumentException("Game with that Game Id does not exist in the database!");
             }
 
             var isInUserCollection = this.db.UserGames.Any(ug => ug.UserId == userId && ug.GameId == dbGame.GameId);
@@ -190,9 +191,14 @@
 
         public async Task AddGameToCollection(long gameId, int regionId)
         {
+            if (regionId < 0 || regionId > 10)
+            {
+                throw new ArgumentException("Region Id must be between 0 and 10!");
+            }
+
             var curGame = await this.GetGameAsync(gameId, (RiotSharp.Misc.Region)regionId);
 
-            var region = this.db.Regions.FirstOrDefault(r => r.RiotRegionId == regionId);
+            var region = await this.db.Regions.FirstOrDefaultAsync(r => r.RiotRegionId == regionId);
 
             var game = new Game()
             {
@@ -214,7 +220,7 @@
             game.Teams.Add(firstTeam);
             game.Teams.Add(secondTeam);
 
-            this.db.Games.Add(game);
+            await this.db.Games.AddAsync(game);
             await this.db.SaveChangesAsync();
 
             var firstTeamPlayers = this.playersService.GetPlayersByParticipants(curGame.ParticipantIdentities, curGame.Participants, 100).ToList();
@@ -226,13 +232,13 @@
 
             await this.db.SaveChangesAsync();
 
-            var dbGame = this.db.Games.OrderByDescending(g => g.GameId).FirstOrDefault();
+            var dbGame = await this.db.Games.OrderByDescending(g => g.GameId).FirstOrDefaultAsync();
 
             var firstTeamId = dbGame.Teams[0].TeamId;
             var secondTeamId = dbGame.Teams[1].TeamId;
 
-            var players = this.db.Players.Where(p => p.TeamId == firstTeamId || p.TeamId == secondTeamId).Select(p => p).ToList();
-            var champions = this.db.ChampionsStatic.ToList();
+            var players = await this.db.Players.Where(p => p.TeamId == firstTeamId || p.TeamId == secondTeamId).Select(p => p).ToListAsync();
+            var champions = await this.db.ChampionsStatic.ToListAsync();
 
             for (int i = 0; i < players.Count; i++)
             {
@@ -241,7 +247,7 @@
                 var champRiotId = curGame.Participants[participantIndex].ChampionId;
                 var champId = champions.FirstOrDefault(c => c.ChampionRiotId == champRiotId.ToString()).ChampionId;
 
-                this.db.PlayerChampion.Add(new PlayerChampion
+                await this.db.PlayerChampion.AddAsync(new PlayerChampion
                 {
                     PlayerId = playerId,
                     ChampionId = champId,
@@ -251,13 +257,24 @@
             await this.db.SaveChangesAsync();
         }
 
-        public void AddGameToUser(string userId)
+        public async Task AddGameToUser(string userId, long riotGameId)
         {
-            var dbGame = this.db.Games.OrderByDescending(g => g.GameId).FirstOrDefault();
+            var dbGame = await this.db.Games.FirstOrDefaultAsync(g => g.RiotGameId == riotGameId);
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (dbGame == null)
+            {
+                throw new ArgumentException("There is no game with the given id!");
+            }
+
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with the given id!");
+            }
 
             this.db.UserGames.Add(new UserGames
             {
-                UserId = userId,
+                UserId = user.Id,
                 GameId = dbGame.GameId,
             });
             this.db.SaveChanges();
@@ -265,17 +282,24 @@
 
         public int GetGameCount(string userId)
         {
+            var user = this.db.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with the given id!");
+            }
+
             return this.db.UserGames.Where(u => u.UserId == userId).Count();
         }
 
-        public ICollection<CollectionPageGameViewModel> GetCollectionGames(string userId)
+        public async Task<ICollection<CollectionPageGameViewModel>> GetCollectionGames(string userId)
         {
             var viewModel = new List<CollectionPageGameViewModel>();
             var gameIds = this.db.UserGames
                 .Where(ug => ug.UserId == userId)
                 .Select(ug => new { ug.GameId })
                 .ToList();
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
             foreach (var gameId in gameIds)
             {
@@ -288,46 +312,46 @@
 
                 // first team
                 Team fTeam = curGameTeams[0];
-                List<GokoSite.Data.Models.LoL.Player> fPlayers = this.db.Players
+                List<GokoSite.Data.Models.LoL.Player> fPlayers = await this.db.Players
                     .Where(p => p.TeamId == fTeam.TeamId)
-                    .ToList();
+                    .ToListAsync();
 
                 List<Champion> fChampions = new List<Champion>();
 
                 foreach (var player in fPlayers)
                 {
-                    fChampions.Add(this.db.PlayerChampion
+                    fChampions.Add(await this.db.PlayerChampion
                     .Where(pc => pc.PlayerId == player.PlayerId)
                     .Select(pc => new Champion
                     {
                         ChampionIconUrl = pc.Champion.ChampionIconUrl,
                         ChampionName = pc.Champion.ChampionName,
                         ChampionRiotId = pc.Champion.ChampionRiotId,
-                        ChampionId = pc.Champion.ChampionId
+                        ChampionId = pc.Champion.ChampionId,
                     })
-                    .FirstOrDefault());
+                    .FirstOrDefaultAsync());
                 }
 
                 // second team
                 Team sTeam = curGameTeams[1];
-                List<GokoSite.Data.Models.LoL.Player> sPlayers = this.db.Players
+                List<GokoSite.Data.Models.LoL.Player> sPlayers = await this.db.Players
                     .Where(p => p.TeamId == sTeam.TeamId)
-                    .ToList();
+                    .ToListAsync();
 
                 List<Champion> sChampions = new List<Champion>();
 
                 foreach (var player in sPlayers)
                 {
-                    sChampions.Add(this.db.PlayerChampion
+                    sChampions.Add(await this.db.PlayerChampion
                     .Where(pc => pc.PlayerId == player.PlayerId)
                     .Select(pc => new Champion
                     {
                         ChampionIconUrl = pc.Champion.ChampionIconUrl,
                         ChampionName = pc.Champion.ChampionName,
                         ChampionRiotId = pc.Champion.ChampionRiotId,
-                        ChampionId = pc.Champion.ChampionId
+                        ChampionId = pc.Champion.ChampionId,
                     })
-                    .FirstOrDefault());
+                    .FirstOrDefaultAsync());
                 }
 
                 viewModel.Add(this.GetModelByGame(curGame, fChampions, sChampions));

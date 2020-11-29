@@ -86,7 +86,7 @@
             return this.View("games", viewModel);
         }
 
-        public IActionResult Collection()
+        public async Task<IActionResult> Collection()
         {
             if (!this.User.Identity.IsAuthenticated)
             {
@@ -95,7 +95,7 @@
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var viewModel = this.gamesService.GetCollectionGames(userId);
+            var viewModel = await this.gamesService.GetCollectionGames(userId);
 
             return this.View(viewModel);
         }
@@ -115,7 +115,7 @@
             if (userGameCount < 10)
             {
                 await this.gamesService.AddGameToCollection(gameId, regionId);
-                this.gamesService.AddGameToUser(userId);
+                await this.gamesService.AddGameToUser(userId, gameId);
             }
 
             return this.Redirect("/LOL/Collection");

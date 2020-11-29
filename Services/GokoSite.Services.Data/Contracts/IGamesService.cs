@@ -11,7 +11,7 @@
     {
         Task<ICollection<Match>> GetGamesAsync(GetGamesInputModel input);
 
-        ICollection<CollectionPageGameViewModel> GetCollectionGames(string userId);
+        Task<ICollection<CollectionPageGameViewModel>> GetCollectionGames(string userId);
 
         Task<Match> GetGameAsync(long gameId, RiotSharp.Misc.Region region);
 
@@ -23,7 +23,7 @@
 
         Task AddGameToCollection(long gameId, int regionId);
 
-        void AddGameToUser(string userId);
+        Task AddGameToUser(string userId, long riotGameId);
 
         void RemoveGameFromCollection(string userId, long gameId);
 
