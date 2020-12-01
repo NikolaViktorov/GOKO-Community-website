@@ -148,7 +148,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Remove(long gameId)
+        public async Task<IActionResult> Remove(long gameId)
         {
             if (!this.User.Identity.IsAuthenticated)
             {
@@ -157,7 +157,7 @@
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            this.gamesService.RemoveGameFromCollection(userId, gameId);
+            await this.gamesService.RemoveGameFromCollection(userId, gameId);
 
             return this.Redirect("/LOL/Collection");
         }

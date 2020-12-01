@@ -38,6 +38,17 @@ namespace GokoSite.Services.Data.Tests
         }
 
         [Fact]
+        public async Task GetLatestVersionShouldReturnDDragonNewestVersion()
+        {
+            string currentLatestVersion = "10.24.1";
+
+            var result = PublicData.ddVerision;
+
+            Assert.NotNull(result);
+            Assert.Equal(currentLatestVersion, result);
+        }
+
+        [Fact]
         public async Task GetBasicSummonerDataAsyncShouldReturnSummonerBySummonerName()
         {
             string username = "Nikolcho";
@@ -563,7 +574,7 @@ namespace GokoSite.Services.Data.Tests
             };
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("lolAddGameToUser");
+                .UseInMemoryDatabase("lolAddGameToUserLol");
             var db = new ApplicationDbContext(options.Options);
 
             await db.Users.AddAsync(user);
@@ -756,6 +767,88 @@ namespace GokoSite.Services.Data.Tests
             var service = new GamesService(db, this.playersService, this.teamsService.Object);
 
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetCollectionGames(userId));
+        }
+
+        [Fact]
+        public async Task RemoveGameFromCollectionShouldRemoveTheGameFromUsersCollection()
+        {
+            var validGameId = 2660892488;
+            int regionId = 1;
+
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolRemoveGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            int expectedGameCount = 0;
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+            await service.AddGameToCollection(validGameId, regionId);
+            await service.AddGameToUser(userId, validGameId);
+
+            await service.RemoveGameFromCollection(userId, validGameId);
+            var tryGetGame = await db.Games.FirstOrDefaultAsync(g => g.RiotGameId == validGameId);
+
+            Assert.Null(tryGetGame);
+            Assert.Equal(expectedGameCount, db.Games.Count());
+            Assert.Equal(expectedGameCount, db.UserGames.Count());
+        }
+
+        [Theory]
+        [InlineData("1=1")]
+        [InlineData("Real_Username")]
+        [InlineData("fake_id")]
+        [InlineData(null)]
+        public async Task RemoveGameFromCollectionShouldThrowArgumentExceptionIfGivenInvalidUserId(string userId)
+        {
+            var validGameId = 2660892488;
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+               .UseInMemoryDatabase("lolRemoveGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.RemoveGameFromCollection(userId, validGameId));
+        }
+
+        [Theory]
+        [InlineData(21)]
+        [InlineData(-20)]
+        [InlineData(41312312)]
+        [InlineData(0)]
+        public async Task RemoveGameFromCollectionShouldThrowArgumentExceptionIfGivenInvalidGameId(int gameId)
+        {
+            var user = new ApplicationUser()
+            {
+                Email = "e@a.c",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+               .UseInMemoryDatabase("lolRemoveGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            string userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.RemoveGameFromCollection(userId, gameId));
         }
     }
 }

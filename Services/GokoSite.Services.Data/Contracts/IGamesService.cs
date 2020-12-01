@@ -25,7 +25,7 @@
 
         Task AddGameToUser(string userId, long riotGameId);
 
-        void RemoveGameFromCollection(string userId, long gameId);
+        Task RemoveGameFromCollection(string userId, long gameId);
 
         int GetGameCount(string userId);
     }

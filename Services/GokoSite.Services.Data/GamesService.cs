@@ -366,40 +366,52 @@
             return viewModel;
         }
 
-        public void RemoveGameFromCollection(string userId, long gameId)
+        public async Task RemoveGameFromCollection(string userId, long gameId)
         {
-            var game = this.db.Games
-                .FirstOrDefault(g => g.RiotGameId == gameId);
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
-            var teams = this.db.Teams
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with the given id!");
+            }
+
+            var game = await this.db.Games
+                .FirstOrDefaultAsync(g => g.RiotGameId == gameId);
+
+            if (game == null)
+            {
+                throw new ArgumentException("There is not game with the given id");
+            }
+
+            var teams = await this.db.Teams
                 .Where(t => t.GameId == game.GameId)
-                .ToArray();
+                .ToArrayAsync();
 
             // first team
             var fTeam = teams[0];
-            var fPlayers = this.db.Players
+            var fPlayers = await this.db.Players
                 .Where(p => p.TeamId == fTeam.TeamId)
-                .ToList();
+                .ToListAsync();
 
             fPlayers.ForEach(p => p.PlayerChampions.Clear());
             this.db.Players.RemoveRange(fPlayers);
 
             // second team
             var sTeam = teams[1];
-            var sPlayers = this.db.Players
+            var sPlayers = await this.db.Players
                 .Where(p => p.TeamId == sTeam.TeamId)
-                .ToList();
+                .ToListAsync();
 
             sPlayers.ForEach(p => p.PlayerChampions.Clear());
             this.db.Players.RemoveRange(sPlayers);
 
             this.db.Teams.RemoveRange(teams);
 
-            this.db.Games.FirstOrDefault(g => g.RiotGameId == gameId).UserGames.Clear();
+            (await this.db.Games.FirstOrDefaultAsync(g => g.RiotGameId == gameId)).UserGames.Clear();
 
             this.db.Games.Remove(game);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
         }
 
         private CollectionPageGameViewModel GetModelByGame(Game game, List<Champion> fChampions, List<Champion> sChampions)
