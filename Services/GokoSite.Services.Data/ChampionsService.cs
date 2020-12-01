@@ -66,7 +66,7 @@
             return champion;
         }
 
-        private async Task UploadChamionsToDBAsync()
+        public async Task UploadChamionsToDBAsync()
         {
             var dic = await this.api.StaticData.Champions.GetAllAsync(this.ddVersion);
             var champions = dic.Champions.Values;

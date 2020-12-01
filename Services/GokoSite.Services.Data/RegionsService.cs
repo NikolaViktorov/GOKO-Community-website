@@ -33,6 +33,20 @@
             return convertedRegions.ToList();
         }
 
+        public async Task UpdateRegions()
+        {
+            foreach (var regionName in Enum.GetNames(typeof(RiotSharp.Misc.Region)))
+            {
+                this.db.Regions.Add(new Region()
+                {
+                    RegionName = regionName,
+                    RiotRegionId = (int)Enum.Parse(typeof(RiotSharp.Misc.Region), regionName),
+                });
+
+                await this.db.SaveChangesAsync();
+            }
+        }
+
         private ICollection<RegionsLolAppViewModel> ConvertRegions(List<Region> regions)
         {
             var newRegions = new List<RegionsLolAppViewModel>();
@@ -56,20 +70,6 @@
             }
 
             return newRegions;
-        }
-
-        private async Task UpdateRegions()
-        {
-            foreach (var regionName in Enum.GetNames(typeof(RiotSharp.Misc.Region)))
-            {
-                this.db.Regions.Add(new Region()
-                {
-                    RegionName = regionName,
-                    RiotRegionId = (int)Enum.Parse(typeof(RiotSharp.Misc.Region), regionName),
-                });
-
-                await this.db.SaveChangesAsync();
-            }
         }
 
         private enum ConvertedRegions

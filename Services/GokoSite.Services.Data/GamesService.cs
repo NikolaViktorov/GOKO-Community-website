@@ -259,7 +259,8 @@
 
         public async Task AddGameToUser(string userId, long riotGameId)
         {
-            var dbGame = await this.db.Games.FirstOrDefaultAsync(g => g.RiotGameId == riotGameId);
+            var dbGame = await this.db.Games.OrderByDescending(g => g.GameId)
+                .FirstOrDefaultAsync(g => g.RiotGameId == riotGameId);
             var user = await this.db.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             if (dbGame == null)
@@ -272,12 +273,12 @@
                 throw new ArgumentException("There is no user with the given id!");
             }
 
-            this.db.UserGames.Add(new UserGames
+            await this.db.UserGames.AddAsync(new UserGames
             {
                 UserId = user.Id,
                 GameId = dbGame.GameId,
             });
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
         }
 
         public int GetGameCount(string userId)
@@ -294,21 +295,26 @@
 
         public async Task<ICollection<CollectionPageGameViewModel>> GetCollectionGames(string userId)
         {
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("There is no user with the given id!");
+            }
+
             var viewModel = new List<CollectionPageGameViewModel>();
-            var gameIds = this.db.UserGames
-                .Where(ug => ug.UserId == userId)
+            var gameIds = await this.db.UserGames
+                .Where(ug => ug.UserId == user.Id)
                 .Select(ug => new { ug.GameId })
-                .ToList();
-            await this.db.SaveChangesAsync();
+                .ToListAsync();
 
             foreach (var gameId in gameIds)
             {
-                var curGame = this.db.Games
-                    .FirstOrDefault(g => g.GameId == gameId.GameId);
+                var curGame = await this.db.Games.FirstOrDefaultAsync(g => g.GameId == gameId.GameId);
 
-                var curGameTeams = this.db.Teams
+                var curGameTeams = await this.db.Teams
                     .Where(t => t.GameId == curGame.GameId)
-                    .ToArray();
+                    .ToArrayAsync();
 
                 // first team
                 Team fTeam = curGameTeams[0];

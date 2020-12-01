@@ -694,5 +694,68 @@ namespace GokoSite.Services.Data.Tests
 
             Assert.Throws<ArgumentException>(() => service.GetGameCount(userId));
         }
+
+        [Fact]
+        public async Task GetCollectionGamesShouldReturnCollectionPageGameViewModel()
+        {
+            var validGameId = 2660892488;
+            int regionId = 1;
+
+            var user = new ApplicationUser()
+            {
+                Email = "f@a.b",
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            RegionsService regionsService = new RegionsService(db);
+            await regionsService.UpdateRegions();
+            ChampionsService championsService = new ChampionsService(db);
+            await championsService.UploadChamionsToDBAsync();
+
+            int expectedGameCount = 1;
+            var userId = user.Id;
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await service.AddGameToCollection(validGameId, regionId);
+            var expectedGame = await db.Games.FirstOrDefaultAsync(g => g.RiotGameId == validGameId);
+            await service.AddGameToUser(userId, validGameId);
+
+            var result = (await service.GetCollectionGames(userId)).ToList();
+            var resultFirstGame = result.FirstOrDefault();
+
+            Assert.NotNull(result);
+            Assert.NotNull(resultFirstGame);
+            Assert.IsType<List<CollectionPageGameViewModel>>(result);
+            Assert.IsType<CollectionPageGameViewModel>(resultFirstGame);
+            Assert.Equal(expectedGameCount, result.Count());
+            Assert.Equal(expectedGame.RiotGameId, resultFirstGame.GameId);
+            Assert.Equal(expectedGame.Teams.First().State, resultFirstGame.BlueTeam.State);
+            Assert.Equal(expectedGame.Teams.Last().State, resultFirstGame.RedTeam.State);
+            Assert.Equal(expectedGame.Teams[0].Players.First().Username, resultFirstGame.BlueTeam.Players.First().Username);
+            Assert.Equal(expectedGame.Teams[1].Players.Last().Username, resultFirstGame.RedTeam.Players.Last().Username);
+        }
+
+        [Theory]
+        [InlineData("1=1")]
+        [InlineData("Real_Username")]
+        [InlineData("fake_id")]
+        [InlineData(null)]
+        public async Task GetCollectionGamesShouldThrowArgumentExceptionIfGivenInvalidUserId(string userId)
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("lolAddGameToUser");
+            var db = new ApplicationDbContext(options.Options);
+
+            var service = new GamesService(db, this.playersService, this.teamsService.Object);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetCollectionGames(userId));
+        }
     }
 }
