@@ -17,6 +17,10 @@
     transition: border .1s ease-in-out 0s;
     position: relative
 }
+.frame {
+    margin-left: 25%;
+    width: 900px;
+}
 
 .notliked {
     color: white;
@@ -384,12 +388,9 @@ fieldset[disabled] .btn-grey:active, fieldset[disabled] .btn-grey:focus, fieldse
 
 #video-background {
     /* making the video fullscreen */
-    position: absolute;
+    position: relative;
     display: block;
-    margin: 2% 0 0 54%;
-    border: 3px solid #ECECEC;
-    box-sizing: border-box;
-    width: 40%;
+    width: 99%;
 }
 
 #video-background:active {

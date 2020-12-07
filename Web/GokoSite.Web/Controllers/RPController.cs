@@ -1,10 +1,11 @@
 ﻿namespace Suls.Controllers
 {
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
     using GokoSite.Services.Data;
     using GokoSite.Web.ViewModels.Forums;
     using Microsoft.AspNetCore.Mvc;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
 
     public class RPController : Controller
     {
@@ -15,6 +16,16 @@
         {
             this.rPServerService = rPServerService;
             this.forumsService = forumsService;
+        }
+
+        public IActionResult Test()
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/Identity/Account/Login");
+            }
+
+            return this.View();
         }
 
         public IActionResult Home()
@@ -61,6 +72,16 @@
         }
 
         public IActionResult PoliceWhitelist()
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/Identity/Account/Login");
+            }
+
+            return this.View();
+        }
+
+        public IActionResult MedicWhitelist()
         {
             if (!this.User.Identity.IsAuthenticated)
             {

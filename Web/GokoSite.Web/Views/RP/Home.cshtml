@@ -1,157 +1,643 @@
-﻿<div class="row">
-    <div class="jumbotron col-md-12" id="video-container">
-        <div class="heading-container bottom-buffer-md">
-            <h1>Welcome to the GOKO Roleplay info page!</h1>
+﻿<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="~/css/Test/bootstrap.css" rel="stylesheet" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/Test/fontawesome-all.css" rel="stylesheet" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/Test/swiper.css" rel="stylesheet" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/Test/magnific-popup.css" rel="stylesheet" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/Test/styles.css" rel="stylesheet" rel="stylesheet" asp-append-version="true">
+
+</head>
+<body style="background-color: #2b2b2b" data-spy="scroll" data-target=".fixed-top">
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
-
-        <video id="video-background" class="video" autoplay="autoplay" onloadstart="this.volume=0.04">
-            <source src="/videos/rpserver.mp4" type="video/mp4" />
-        </video>
-
-        <div class="row row-cols-2 flex-row rp-home-row">
-            <div class="rp-home-page-item-box">
-                <div class="rp-home-page-img-box">
-                    <img class="rp-home-page-img" src="~/images/rp/rules.jpg" />
-                </div>
-                <div class="rp-home-page-content-box">
-                    <div class="button-holder">
-                        <a href="/RP/Rules" class="btn-border btn-rp-home btn-primaryrp">
-                            <span class="btn-rp btn-primaryrp btn-lg"> Server Rules</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="rp-home-page-item-box">
-                <div class="rp-home-page-img-box">
-                    <img class="rp-home-page-img" src="~/images/rp/forum.jpg" />
-                </div>
-                <div class="rp-home-page-content-box">
-                    <div class="button-holder">
-                        <a href="/RP/Forum" class="btn-border btn-rp-home btn-primaryrp">
-                            <span class="btn-rp btn-primaryrp btn-lg"> Forum</span>
-                        </a>
+    </div>
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-container">
+                            <h1>GOKO</h1>
+                            <span class="subTitle" id="js-rotating">SERIOUS ROLEPLAY, REALISTIC ECONOMY, CUSTOM CARS</span>
+                            <p class="p-heading p-large">Goko is a bulgarian roleplay server where you can enjoy playing with fivem with other people in a optimized server with a lot of custom scripts.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </header>
 
-        <div class="row row-cols-2 flex-row rp-home-row">
-            <div class="rp-home-page-item-box">
-                <div class="rp-home-page-img-box">
-                    <img class="rp-home-page-img" src="~/images/rp/players.jpg" />
-                </div>
-                <div class="rp-home-page-content-box">
-                    <div class="button-holder">
-                        <a href="/RP/Players" class="btn-border btn-rp-home btn-primaryrp">
-                            <span class="btn-rp btn-primaryrp btn-lg">Online Players</span>
-                        </a>
+    <div id="intro" class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="text-container">
+                        <div class="section-title">INFO</div>
+                        <h2>GOKO The Right Place To Be</h2>
+                        <p>Bulgarian Goko Roleplay is a community, created in 2019, with goal to bring optimized, logical and quality experience while playing FiveM. After first starting as a ESX base server, Goko has expanded far away from that and continues to offer new, innovative functionalities to enchance your experience in the server.</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="rp-home-page-item-box">
-                <div class="rp-home-page-img-box">
-                    <img class="rp-home-page-img" src="~/images/rp/whitelist.jpg" />
+                <div class="col-lg-7">
+                    <video id="video-background" autoplay="autoplay" onloadstart="this.volume=0.04" controls>
+                        <source src="/videos/rpserver.mp4" type="video/mp4" />
+                    </video>
                 </div>
-                <div class="rp-home-page-content-box">
-                    <div class="button-holder">
-                        <a href="/RP/WhitelistApps" class="btn-border btn-rp-home btn-primaryrp">
-                            <span class="btn-rp btn-primaryrp btn-lg">Whitelist Application</span>
-                        </a>
+            </div>
+        </div>
+    </div>
+    <div id="services" class="cards-2">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 style="color:#FA0; font-size: 30px">How to play Roleplay</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-fluid" src="~/images/rp/gta.png" alt="alternative">
+                    </div>
+                    <div class="card-body choice">
+                        <h3 class="card-title">Do I need GTA 5 to play FiveM?</h3>
+                        <p>In order to play FiveM you need to have GTA 5, which you can purchase from: </p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Steam for €29.99</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">EpicGames for €29.99</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <a class="btn-solid-reg page-scroll" href="https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/">BUY NOW</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-fluid" src="~/images/rp/fivem.jpg" alt="alternative">
+                    </div>
+                    <div class="card-body choice">
+                        <h3 class="card-title">Download FiveM!</h3>
+                        <p>FiveM is a modification framework for GTA V, which allows you to play multiplayer on personalized servers, ran on Cfx.re</p>
+                    </div>
+                    <div class="button-container">
+                        <a class="btn-solid-reg page-scroll" href="https://fivem.net/">DOWNLOAD NOW</a>
+                    </div>
+                </div>
+                <div class="card choice">
+                    <div class="card-image">
+                        <img class="img-fluid" src="~/images/rp/joinus.jpg" alt="alternative">
+                    </div>
+                    <div class="card-body choice">
+                        <h3 class="card-title">Join Goko Roleplay</h3>
+                        <p>In order to join our server you would need to have steam open and running. After that open FiveM and by pressing F8 in the console write -> connect 87.121.54.15</p>
+                    </div>
+                    <div class="button-container">
+                        <a class="btn-solid-reg page-scroll" href="fivem://connect/87.121.54.15">DIRECT JOIN</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div id="details" class="accordion">
+        <div class="area-1">
+        </div><div class="area-2">
+                  <div class="accordion-container" id="accordionOne">
+                      <h2>If you have any questions or suggestions, go ahead and share them!</h2>
+                      <div class="item">
+                          <div id="headingOne">
+                              <span data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button">
+                                  <span class="circle-numbering">1</span><span class="accordion-title">Forum</span>
+                              </span>
+                          </div>
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionOne">
+                              <div class="accordion-body">
+                                  Go to our <a style="text-decoration: none;color: #FA0" href="/RP/Forum">Forum</a> to look trought everyone's suggestion and feel free to like them!
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div id="headingTwo">
+                              <span class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+                                  <span class="circle-numbering">2</span><span class="accordion-title">Create a topic yourself</span>
+                              </span>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionOne">
+                              <div class="accordion-body">
+                                  If you want to share your opinion go to the forum and press the button "ADD YOUR OWN IDEA" .
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="area-1">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs" id="ariaTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"><i class="fas fa-th"></i>Whitelist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-th"></i>Police</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-th"></i>Medic</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="ariaTabsContent">
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                        <h4>Whitelist for server</h4>
+                        <p>Currently the server is NON-Whitelist so you can join without applying for it!</p>
+                        <p>But if you still want to try our whitelist application you can filling in and sending it.</p>
+                        <a style="text-decoration: none; color: #FA0" href="/RP/ServerWhitelist">Check it out!</a>
+                    </div>
+                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                        <h4>Police job</h4>
+                        <p>The police job is a very precise job and is not for everyone. You have to patrol around the town and apply the law as well as deal with criminals robbing the various shops and banks!</p>
+                        <p>In order to become police in our server you would have to fill an application, which contains some basic roleplay rules as well as roleplay situations for police!</p>
+                        <a style="text-decoration: none; color: #FA0" href="/RP/PoliceWhitelist">Check it out!</a>
+                    </div>
+                    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+                        <h4>Medic job</h4>
+                        <p>The medic job plays very important role in our town. You would have to go on emergency signals, whether they are people, who have passed out and are looking for help, or bank robberies where you should be ready to save the hostages at any cost!</p>
+                        <p>In order to become a medic in our server you would have to fill an application, which contains some basic roleplay rules as well as roleplay situations for medic!</p>
+                        <a style="text-decoration: none; color: #FA0" href="/RP/PoliceWhitelist">Check it out!</a>
+                    </div>
+                </div>
+            </div>
+        </div><div class="area-2"></div>
+    </div>
 
-<div class="snowflakes" aria-hidden="true">
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
+    <div class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Server Owners and Creators</h2>
+                    <p class="p-heading">Here are the people who made the server possible</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="team-member">
+                        <div class="image-wrapper">
+                            <img class="img-fluid" src="~/images/rp/nikolcho.jpg" alt="alternative">
+                        </div>
+                        <p class="p-large">Nikola Viktorov</p>
+                        <p class="job-title">Owner and Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="image-wrapper">
+                            <img class="img-fluid" src="~/images/rp/venum.jpg" alt="alternative">
+                        </div>
+                        <p class="p-large">Venum Bg</p>
+                        <p class="job-title">Owner and Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
+
+    <div id="projects" class="filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">PHOTOS</div>
+                    <h2>Some photos from our server</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="button-group filters-button-group">
+                        <a class="button is-checked" data-filter="*"><span>SHOW ALL</span></a>
+                        <a class="button" data-filter=".cars"><span>CARS</span></a>
+                        <a class="button" data-filter=".jobs"><span>JOBS</span></a>
+                        <a class="button" data-filter=".police"><span>POLICE</span></a>
+                        <a class="button" data-filter=".robberies"><span>ROBBERIES</span></a>
+                    </div>
+                    <div class="grid">
+                        <div class="element-item cars">
+                            <a class="popup-with-move-anim" href="#project-1"><div class="element-item-overlay"><span>Vehicle Shop</span></div><img src="~/images/rp/vehicle-shop.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item cars">
+                            <a class="popup-with-move-anim" href="#project-2"><div class="element-item-overlay"><span>Car Cattalog</span></div><img src="~/images/rp/vehicle-catalog.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item">
+                            <a class="popup-with-move-anim" href="#project-3"><div class="element-item-overlay"><span>Map</span></div><img src="~/images/rp/map.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item jobs">
+                            <a class="popup-with-move-anim" href="#project-4"><div class="element-item-overlay"><span>Jobs</span></div><img src="~/images/rp/jobs.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item police">
+                            <a class="popup-with-move-anim" href="#project-5"><div class="element-item-overlay"><span>Police Interior</span></div><img src="~/images/rp/police.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item police cars">
+                            <a class="popup-with-move-anim" href="#project-6"><div class="element-item-overlay"><span>Police Cars</span></div><img src="~/images/rp/police-cars.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item cars">
+                            <a class="popup-with-move-anim" href="#project-7"><div class="element-item-overlay"><span>Medic Cars</span></div><img src="~/images/rp/medic-cars.jpg" alt="alternative"></a>
+                        </div>
+                        <div class="element-item robberies">
+                            <a class="popup-with-move-anim" href="#project-8"><div class="element-item-overlay"><span>Shop Robbery</span></div><img src="~/images/rp/shop-robbery.png" alt="alternative"></a>
+                        </div>
+                        <div class="element-item robberies">
+                            <a class="popup-with-move-anim" href="#project-9"><div class="element-item-overlay"><span>Bank Robbery</span></div><img src="~/images/rp/bank-robbery.png" alt="alternative"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
+
+    <div id="project-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/vehicle-shop.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Online Banking</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
     </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
+
+    <div id="project-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/vehicle-catalog.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Classic Industry</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
     </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❅
-            </font>
-        </font>
-    </div>
-    <div class="snowflake">
-        <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">
-                ❆
-            </font>
-        </font>
-    </div>
-</div>
 
 
-<script src="~/js/rpvideo.js"></script>
+    <div id="project-3" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/map.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>BoomBap Audio</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="project-4" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/jobs.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Van Moose</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-5" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/police.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Joy Moments</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-6" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/police-cars.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Spark Events</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-7" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/medic-cars.jpg" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Casual Wear</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-8" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/shop-robbery.png" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Zazoo Apps</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-9" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-8">
+                <img class="img-fluid" src="~/images/rp/bank-robbery.png" alt="alternative">
+            </div>
+            <div class="col-lg-4">
+                <h3>Zazoo Apps</h3>
+                <hr class="line-heading">
+                <h6>Strategy Development</h6>
+                <p>Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current needs</p>
+                <p>By offering the best professional services and quality products in the market. Don't hesitate and get in touch with us.</p>
+                <div class="testimonial-container">
+                    <p class="testimonial-text">Need a solid foundation for your business growth plans? Aria will help you manage sales and meet your current requirements.</p>
+                    <p class="testimonial-author">General Manager</p>
+                </div>
+                <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">RULES</div>
+                    <h2>Down below you can see the basic rules of Goko Roleplay</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 p-4">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="feature-box text-center">
+                                <span class="icon-circle-outer skrollable skrollable-after">
+                                    <span class="icon-circle-inner">
+                                        <span class="glyphicon glyphicon-book">
+                                        </span>
+                                    </span>
+                                </span>
+                                <h3 class="feature-header bracket">Правила</h3>
+                                <p>
+                                    [1.] С влизането в сървъра ЗАБРАВЯТЕ за думите и значението на думите "OUT OF ROLEPLAY". Има чат OOC (out ot character) който е предназначен точно за Out of RolePlay разговори.
+                                </p>
+
+                                <p>
+                                    [2.] Задължително е да имате работещ микрофон.Викането , расизма , псуването и просташкото поведение е строго забранено.Пускането на музика през микрофона е забранено. Викането на микрофона (Ear Rape) е забранено.Ако искате да използвате Voice Changer, първо викнете админ да го одобри, защото е забранено да се използва voice changer, с който се чувате като робот и тн.
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="feature-box text-center">
+                                <span class="icon-circle-outer skrollable skrollable-after" data-toggle="tooltip" data-placement="top" data-100p-top="transform[swing]:scale(0.5);opacity[swing]:0" data-75p-top="transform[swing]:scale(1);opacity[swing]:1" "=" " data-original-title="" title="" style="transform: scale(1); opacity: 1;">
+                                    <span class="icon-circle-inner">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                    </span>
+                                </span>
+                                <h3 class="feature-header bracket">Времетраене</h3>
+                                <p>METAGAMING/POWERGAMING / 24ч.</p>
+                                <p>VOICE-CHANGER / 12ч.</p>
+                                <p>Обиждане на сървъра / 7д.</p>
+                                <p>FailRP / 15ч.</p>
+                                <p>Спам на админ тикети / 5ч.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="feature-box text-center">
+                                <span class="icon-circle-outer skrollable skrollable-after">
+                                    <span class="icon-circle-inner">
+                                        <span class="glyphicon glyphicon-book">
+                                        </span>
+                                    </span>
+                                </span>
+                                <h3 style="font-size:29px;" class="feature-header bracket">Мафия Правила</h3>
+                                <p>
+                                    [1] Ако полицай ви удари превозното средство и пуска сигнали за да отбиете колата, вие сте длъжни да отбиете!
+                                </p>
+
+                                <p>
+                                    [2] Нямате право да отвличате полицаи/парамедици/механици/бакшиши на смяна!
+                                </p>
+
+                                <p>
+                                    [3] Всяка мафия, има право да обира/отвлича граждани на всеки 1 час!
+                                </p>
+                            </div>
+
+                        </div>
+                        <div>
+                            <a href="/RP/Rules" class="btn rp-see-more btn-info text-uppercase">Read All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="counter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-xl-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="/images/rp/logo.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-xl-6">
+                    <div class="text-container">
+                        <div class="section-title">PLAYERS</div>
+                        <h2>See how many players are in the server live.</h2>
+                        <p><a style="text-decoration: none; color: #FA0;" href="/RP/Players">Check out</a> more about the online players</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❅
+                </font>
+            </font>
+        </div>
+        <div class="snowflake">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    ❆
+                </font>
+            </font>
+        </div>
+    </div>
+
+    <script src="~/js/Test/jquery.min.js"></script>
+    <script src="~/js/Test/popper.min.js"></script>
+    <script src="~/js/Test/bootstrap.min.js"></script>
+    <script src="~/js/Test/swiper.min.js"></script>
+    <script src="~/js/Test/jquery.magnific-popup.js"></script>
+    <script src="~/js/Test/morphext.min.js"></script>
+    <script src="~/js/Test/isotope.pkgd.min.js"></script>
+    <script src="~/js/Test/validator.min.js"></script>
+    <script src="~/js/Test/scripts.js"></script>
+</body>
