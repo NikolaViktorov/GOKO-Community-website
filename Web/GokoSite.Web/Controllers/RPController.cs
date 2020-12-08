@@ -18,16 +18,6 @@
             this.forumsService = forumsService;
         }
 
-        public IActionResult Test()
-        {
-            if (!this.User.Identity.IsAuthenticated)
-            {
-                return this.Redirect("/Identity/Account/Login");
-            }
-
-            return this.View();
-        }
-
         public IActionResult Home()
         {
             if (!this.User.Identity.IsAuthenticated)

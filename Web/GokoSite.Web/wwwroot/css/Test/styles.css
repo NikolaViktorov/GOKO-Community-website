@@ -1355,12 +1355,12 @@ input[type='checkbox'] {
 }
 
 .filter .button-group a:hover {
-	background-color: #14bf98;
+	background-color: #e28600;
 	color: #fff;
 }
 
 .filter .button-group a.button.is-checked {
-	background-color: #14bf98;
+	background-color: #FA0;
 	color: #fff;
 }
 
@@ -1424,7 +1424,7 @@ input[type='checkbox'] {
 	margin: 2.5rem auto;
 	padding: 1.5625rem;
 	border-radius: 0.25rem;
-	background: #fff;
+	background: #787976;
 	text-align: left;
 }
 

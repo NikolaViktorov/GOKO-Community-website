@@ -26,6 +26,13 @@
     color: white;
 }
 
+.post {
+    display: block;
+    width: 50%;
+    padding: 0.5rem 0.5rem;
+    word-break: break-all;
+}
+
 .notliked:hover {
     color: palevioletred;
 }
