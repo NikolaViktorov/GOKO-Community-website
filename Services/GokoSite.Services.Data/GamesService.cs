@@ -157,7 +157,7 @@
 
             var isInUserCollection = this.db.UserGames.Any(ug => ug.UserId == userId && ug.GameId == dbGame.GameId);
 
-            if (isInUserCollection == false)
+            if (isInUserCollection == false && userId != "SharedGameUser")
             {
                 throw new InvalidOperationException($"This user ({userId}) does not contain a game with id({gameId}) in his collection!");
             }

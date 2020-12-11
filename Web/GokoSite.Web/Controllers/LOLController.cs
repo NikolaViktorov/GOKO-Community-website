@@ -148,6 +148,27 @@
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> SharedGame(long gameId, int regionId)
+        {
+            HomePageGameViewModel viewModel = new HomePageGameViewModel();
+
+            try
+            {
+                viewModel = await this.gamesService.GetModelByGameId(gameId, regionId, "SharedGameUser");
+            }
+            catch (System.Exception e)
+            {
+                this.ModelState.AddModelError("details", e.Message);
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.Redirect("DetailsError");
+            }
+
+            return this.View(viewModel);
+        }
+
         public async Task<IActionResult> Remove(long gameId)
         {
             if (!this.User.Identity.IsAuthenticated)

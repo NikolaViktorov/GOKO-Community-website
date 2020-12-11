@@ -40,7 +40,7 @@ namespace GokoSite.Services.Data.Tests
         [Fact]
         public async Task GetLatestVersionShouldReturnDDragonNewestVersion()
         {
-            string currentLatestVersion = "10.24.1";
+            string currentLatestVersion = "10.25.1";
 
             var result = PublicData.ddVerision;
 

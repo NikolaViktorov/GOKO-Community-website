@@ -19,7 +19,7 @@
         public async Task GetSpellUrlByIdShouldReturnTheImageUrlOfTheSpell()
         {
             int spellId = 4;
-            string expectedResultUrl = "http://ddragon.leagueoflegends.com/cdn/10.24.1/img/spell/SummonerFlash.png";
+            string expectedResultUrl = "http://ddragon.leagueoflegends.com/cdn/10.25.1/img/spell/SummonerFlash.png";
 
             var service = new SpellsService();
 
