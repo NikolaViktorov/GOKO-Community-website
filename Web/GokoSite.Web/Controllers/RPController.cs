@@ -106,6 +106,18 @@
             return this.View(viewModel);
         }
 
+        public IActionResult SingleForum(string postId)
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/Identity/Account/Login");
+            }
+
+            var viewModel = this.forumsService.GetPost(postId);
+
+            return this.View(viewModel);
+        }
+
         public IActionResult MyForums()
         {
             if (!this.User.Identity.IsAuthenticated)

@@ -1,0 +1,23 @@
+﻿@using GokoSite.Web.ViewModels.Forums;
+
+@model EditForumViewModel
+
+
+<div class="row">
+    <div class="container-post">
+        <div class="single-forum media-body post">
+            <div class="post-topic">
+                <h1> @Model.Topic </h1>
+                <span style="color: antiquewhite" class="category-name">FiveM Discussion</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-body-content">
+                    <p>@Model.Text</p>
+                </div>
+                <div class="search-actions text-right">
+                    <span>Likes: @Model.Likes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

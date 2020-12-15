@@ -40,6 +40,7 @@
 .liked {
     color: red;
 }
+
 .players-table-td {
     color: white;
     font-style: oblique;
@@ -292,6 +293,57 @@ btn-primaryrp:hover {
     color: black;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.single-post-container {
+    width: 80%;
+    max-height: 50px;
+    border: 1px solid lightgrey;
+}
+
+.post-topic {
+    color: white;
+    z-index: 1;
+    padding-top: 14px;
+    margin-bottom: 10px;
+}
+
+.topic-body {
+    box-shadow: 0 2px 5px 0 rgba(255,255,255,0.36), 0 0 0 0 rgba(255,255,255,0.32);
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 15px 20px 0 20px;
+    position: relative;
+}
+
+.topic-body-content {
+    font-size: 17px;
+    padding: 1em 11px 0.25em 11px;
+}
+
+tr {
+    display: table-row;
+}
+
+.container-post {
+    width: 1180px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 8px;
+}
+
+.single-forum {
+    width: 100%;
+    height: 100%;
+}
+
+.forum-like {
+    float: right;
+}
+
+a .post-title :hover {
+    text-decoration: none;
+    color: red;
 }
 
 .edit-btn:hover {

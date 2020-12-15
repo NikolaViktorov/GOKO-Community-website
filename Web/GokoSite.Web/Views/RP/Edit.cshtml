@@ -2,34 +2,82 @@
 
 @model EditForumViewModel
 
+<link rel="stylesheet" type="text/css" href="~/css/forumInput.css">
+
 <div class="row">
     <div class="jumbotron col-md-12">
         <div class="heading-container bottom-buffer-md">
-            <h1>Here you can edit your idea!</h1>
+            <h1>Here you can share some of your ideas!</h1>
         </div>
 
-        <form class="mx-auto half-width col-5" method="post" asp-controller="RP" asp-action="EditPost">
-            <div class="top-border-line primary-separator"></div>
+        <div class="bg-contact2" style="background-image: url('/images/background.jpg');">
+            <div class="container-contact2">
+                <div class="wrap-contact2">
+                    <form class="contact2-form validate-form" asp-controller="RP" asp-action="EditPost">
+                        <span class="contact2-form-title">
+                            Edit your post
+                        </span>
 
-            <div class="form-group">
-                <label asp-for="Topic" class="suls-text-color"></label>
-                <input asp-for="Topic" class="form-control" placeholder="Topic..." value="@Model.Topic">
-                <span asp-validation-for="Topic" class="text-danger"></span>
+                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                            <label asp-for="Topic" style="color: black;"></label>
+                            <input asp-for="Topic" class="input2" value="@Model.Topic">
+                            <span asp-validation-for="Topic" class="text-danger"></span>
+                        </div>
+
+                        <div class="wrap-input2 validate-input" data-validate="Message is required">
+                            <label asp-for="Text" style="color: black;">Your opinion</label>
+                            <textarea asp-for="Text" class="input2" cols="30" rows="5">@Model.Text</textarea>
+                            <span asp-validation-for="Text" class="text-danger"></span>
+                        </div>
+                        <input asp-for="ForumId" class="hide" hidden="hidden" value="@Model.ForumId">
+
+                        <div class="container-contact2-form-btn">
+                            <div class="wrap-contact2-form-btn">
+                                <div class="contact2-form-bgbtn"></div>
+                                <button type="submit" class="contact2-form-btn">EDIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label asp-for="Text" class="suls-text-color">Your opinion</label>
-                <textarea asp-for="Text" class="form-control" placeholder="Remember be nice!" cols="30" rows="5">@Model.Text</textarea>
-                <span asp-validation-for="Text" class="text-danger"></span>
-            </div>
-
-            <label for="text" class="suls-text-color">This post has @Model.Likes likes!</label>
-
-            <input asp-for="ForumId" class="hide" hidden="hidden" value="@Model.ForumId">
-
-            <div class="top-border-line primary-separator"></div>
-
-            <button type="submit" class="btn forum-add-bg-color">Edit</button>
-        </form>
     </div>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/forum.js"></script>
+
+@*
+    <div class="row">
+        <div class="jumbotron col-md-12">
+            <div class="heading-container bottom-buffer-md">
+                <h1>Here you can edit your idea!</h1>
+            </div>
+
+            <form class="mx-auto half-width col-5" method="post" asp-controller="RP" asp-action="EditPost">
+                <div class="top-border-line primary-separator"></div>
+
+                <div class="form-group">
+                    <label asp-for="Topic" class="suls-text-color"></label>
+                    <input asp-for="Topic" class="form-control" placeholder="Topic..." value="@Model.Topic">
+                    <span asp-validation-for="Topic" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Text" class="suls-text-color">Your opinion</label>
+                    <textarea asp-for="Text" class="form-control" placeholder="Remember be nice!" cols="30" rows="5">@Model.Text</textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+                <label for="text" class="suls-text-color">This post has @Model.Likes likes!</label>
+
+                <input asp-for="ForumId" class="hide" hidden="hidden" value="@Model.ForumId">
+
+                <div class="top-border-line primary-separator"></div>
+
+                <button type="submit" class="btn forum-add-bg-color">Edit</button>
+            </form>
+        </div>
+    </div>
+*@

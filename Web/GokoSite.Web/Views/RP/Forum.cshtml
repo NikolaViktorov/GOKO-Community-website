@@ -1,57 +1,53 @@
 ﻿@using GokoSite.Web.ViewModels.Forums;
 
+@model ICollection<ForumViewModel>
+
 <div class="row">
     <div class="jumbotron col-md-12">
         <div class="heading-container bottom-buffer-md">
             <h1>This is Goko's forum where you can share some of your ideas for improving the server!</h1>
 
         </div>
-
-
-        <div class="container">
+        <div class="container" style="width:85%;">
             @if (Model.Count > 0)
             {
-            <p>
-                 <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
-                 <a href="/RP/MyForums" class="btn btn-info text-uppercase">See your forum posts!</a>
-            </p>
-
-                @foreach (ForumViewModel post in Model)
-                {
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="media search-media">
-                                <div class="media-body post">
-                                    <div>
-                                        <h4 class="media-heading blue"> @post.ForumTopic </h4>
-                                    </div>
-                                    <p>@post.ForumText</p>
-
-                                    <div class="search-actions text-center">
-                                        <span class="text-info">Likes: @post.Likes</span>
-                                        @if (post.Liked)
-                                        {
-                                            <div class="action-buttons bigger-125">
+                <p>
+                     <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
+                     <a href="/RP/MyForums" class="btn btn-info text-uppercase">See your forum posts!</a>
+                </p>
+                <table style="width:70%; margin-right: 50%;">
+                    <tbody>
+                        @foreach (ForumViewModel post in Model)
+                        {
+                            <tr class="single-post-container">
+                                <td class="single-post-container">
+                                    <img src="~/images/rp/small-logo.png" /> |
+                                    <a style="text-decoration: none;" class="post-title" href="/RP/SingleForum?postId=@post.ForumId">
+                                        @post.ForumTopic
+                                    </a>
+                                    |
+                                    <div class="forum-like text-right">
+                                        <span>
+                                            @if (post.Liked)
+                                            {
                                                 <a asp-controller="RP" asp-action="Like" asp-route-id="@post.ForumId" class="like">
                                                     <i class="fa fa-heart liked" aria-hidden="true"></i>
-                                                </a>    
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="action-buttons bigger-125">
+                                                </a>
+                                            }
+                                            else
+                                            {
                                                 <a asp-controller="RP" asp-action="Like" asp-route-id="@post.ForumId" class="like">
                                                     <i class="fa fa-heart notliked" aria-hidden="true"></i>
-                                                </a>    
-                                            </div>
-                                            
-                                        }
+                                                </a>
+                                            }
+                                            <span style="color: antiquewhite">@post.Likes</span>
+                                        </span>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
             else
             {
@@ -62,7 +58,6 @@
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </div>
