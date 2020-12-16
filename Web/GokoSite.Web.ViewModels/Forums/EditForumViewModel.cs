@@ -13,5 +13,7 @@
         public string Text { get; set; }
 
         public int Likes { get; set; }
+
+        public string OwnerName { get; set; }
     }
 }

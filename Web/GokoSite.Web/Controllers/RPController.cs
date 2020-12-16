@@ -81,6 +81,17 @@
             return this.View();
         }
 
+        public IActionResult MechanicWhitelist()
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/Identity/Account/Login");
+            }
+
+            return this.View();
+        }
+
+
         public IActionResult ServerWhitelist()
         {
             if (!this.User.Identity.IsAuthenticated)
@@ -112,7 +123,6 @@
             {
                 return this.Redirect("/Identity/Account/Login");
             }
-
             var viewModel = this.forumsService.GetPost(postId);
 
             return this.View(viewModel);
@@ -190,7 +200,6 @@
             {
                 return this.Redirect("/Identity/Account/Login");
             }
-
             var viewModel = this.forumsService.GetPost(id);
 
             return this.View(viewModel);

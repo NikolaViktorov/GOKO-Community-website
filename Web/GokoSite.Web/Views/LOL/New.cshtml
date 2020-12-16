@@ -35,11 +35,11 @@
         </section>
 
         <div class="button-holder">
-            <a href="/LOL/Home" class="btn btn-info text-uppercase">Go Back</a>
+            <a href="/LOL/Home" class="btn forum-go-back-btn text-uppercase">Go Back</a>
             @if (this.User.IsInRole("Administrator"))
             {
                 <div class="admin-new-btn">
-                    <a class="btn btn-info text-uppercase" onclick="return confirm('Are you sure?')" asp-route-id="@Model.NewId" asp-area="" asp-controller="Administration" asp-action="RemoveNew">Remove New</a>
+                    <a class="btn forum-go-back-btn text-uppercase" onclick="return confirm('Are you sure?')" asp-route-id="@Model.NewId" asp-area="" asp-controller="Administration" asp-action="RemoveNew">Remove New</a>
                 </div>
             }
         </div>

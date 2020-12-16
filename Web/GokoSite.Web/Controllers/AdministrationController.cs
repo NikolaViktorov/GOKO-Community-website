@@ -15,13 +15,16 @@
     {
         private readonly IAuthorizationsService authorizationsService;
         private readonly INewsService newsService;
+        private readonly IForumsService forumsService;
 
         public AdministrationController(
             IAuthorizationsService authorizationsService,
-            INewsService newsService)
+            INewsService newsService,
+            IForumsService forumsService)
         {
             this.authorizationsService = authorizationsService;
             this.newsService = newsService;
+            this.forumsService = forumsService;
         }
 
         public IActionResult AdminPanel()
@@ -93,6 +96,17 @@
 
             var isDeleted = await this.newsService.RemoveNew(id);
             return this.Redirect("/LOL/Home");
+        }
+
+        public async Task<IActionResult> RemovePost(string id)
+        {
+            if (!this.User.IsInRole("Administrator"))
+            {
+                return this.Redirect("/");
+            }
+
+            await this.forumsService.DeletePost(id);
+            return this.Redirect("/RP/Forum");
         }
     }
 }

@@ -338,6 +338,11 @@
         [Fact]
         public async Task GetPostShouldReturnThePostWithTheGivenId()
         {
+            var user = new ApplicationUser()
+            {
+                Email = "afs@.fa.a",
+                UserName = "afs@.fa.a",
+            };
             var topic = "TestTopic";
             var text = "TestText";
             var newForum = new Forum()
@@ -345,12 +350,21 @@
                 ForumTopic = topic,
                 ForumText = text,
             };
+            var userForum = new UserForums()
+            {
+                ForumId = newForum.ForumId,
+                Forum = newForum,
+                User = user,
+                UserId = user.Id
+            };
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("forumTestGetPost");
+                .UseInMemoryDatabase("forumTestGetPostNew");
             var db = new ApplicationDbContext(options.Options);
 
             await db.Forums.AddAsync(newForum);
+            await db.Users.AddAsync(user);
+            await db.UserForums.AddAsync(userForum);
             await db.SaveChangesAsync();
 
             var service = new ForumsService(db);
@@ -361,6 +375,30 @@
             Assert.IsType<EditForumViewModel>(result);
             Assert.Equal(topic, result.Topic);
             Assert.Equal(text, result.Text);
+            Assert.Equal(user.UserName, result.OwnerName);
+        }
+
+        [Fact]
+        public async Task GetPostShouldThrowArgumentExceptionIfPostDoesntBelongToUser()
+        {
+            var topic = "TestTopic";
+            var text = "TestText";
+            var newForum = new Forum()
+            {
+                ForumTopic = topic,
+                ForumText = text,
+            };
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("forumTestGetPostNew");
+            var db = new ApplicationDbContext(options.Options);
+
+            await db.Forums.AddAsync(newForum);
+            await db.SaveChangesAsync();
+
+            var service = new ForumsService(db);
+
+            Assert.Throws<ArgumentException>(() => service.GetPost(newForum.ForumId));
         }
 
         [Fact]

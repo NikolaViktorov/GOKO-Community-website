@@ -12,8 +12,8 @@
             @if (Model.Count > 0)
             {
                 <p>
-                     <a href="/RP/AddForum" class="btn btn-info text-uppercase">Add your own Idea!</a>
-                     <a href="/RP/MyForums" class="btn btn-info text-uppercase">See your forum posts!</a>
+                     <a href="/RP/AddForum" class="btn forum-go-back-btn text-uppercase">Submit Post</a>
+                     <a href="/RP/MyForums" class="btn forum-go-back-btn text-uppercase">Your posts</a>
                 </p>
                 <table style="width:70%; margin-right: 50%;">
                     <tbody>
@@ -23,7 +23,7 @@
                                 <td class="single-post-container">
                                     <img src="~/images/rp/small-logo.png" /> |
                                     <a style="text-decoration: none;" class="post-title" href="/RP/SingleForum?postId=@post.ForumId">
-                                        @post.ForumTopic
+                                        @(post.ForumTopic)
                                     </a>
                                     |
                                     <div class="forum-like text-right">
@@ -42,6 +42,12 @@
                                             }
                                             <span style="color: antiquewhite">@post.Likes</span>
                                         </span>
+                                        @if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <div class="admin-new-btn">
+                                                <a class="btn forum-go-back-btn text-uppercase" onclick="return confirm('Are you sure?')" asp-route-id="@post.ForumId" asp-area="" asp-controller="Administration" asp-action="RemovePost">Delete Post</a>
+                                            </div>
+                                        }
                                     </div>
                                 </td>
                             </tr>

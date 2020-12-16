@@ -110,7 +110,7 @@
                     Liked = await this.IsForumLiked(forum.ForumId, userId),
                 });
             }
-
+            forums = forums.OrderByDescending(f => f.Likes).ToList();
             return forums;
         }
 
@@ -141,8 +141,17 @@
 
             if (postDb == null)
             {
-                throw new ArgumentNullException("No post found with this id!");
+                throw new ArgumentNullException("postId", "No post found with this id!");
             }
+
+            var userForum = this.db.UserForums.FirstOrDefault(uf => uf.ForumId == postId);
+
+            if (userForum == null)
+            {
+                throw new ArgumentException("No owner found for this post!");
+            }
+
+            var owner = this.db.Users.FirstOrDefault(u => u.Id == userForum.UserId);
 
             return new EditForumViewModel()
             {
@@ -150,6 +159,7 @@
                 Topic = postDb.ForumTopic,
                 Text = postDb.ForumText,
                 Likes = postDb.Likes,
+                OwnerName = owner.UserName,
             };
         }
 

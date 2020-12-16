@@ -17,6 +17,12 @@
     transition: border .1s ease-in-out 0s;
     position: relative
 }
+
+.forum-go-back-btn {
+    color: antiquewhite;
+    font-size: 20px;
+}
+
 .frame {
     margin-left: 25%;
     width: 900px;
@@ -316,9 +322,15 @@ btn-primaryrp:hover {
     position: relative;
 }
 
+.owner-username {
+    color: antiquewhite;
+    font-size: 23px;
+}
+
 .topic-body-content {
     font-size: 17px;
     padding: 1em 11px 0.25em 11px;
+    white-space: pre-line
 }
 
 tr {
