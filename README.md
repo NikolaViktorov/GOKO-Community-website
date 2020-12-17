@@ -31,6 +31,47 @@ After long playing in random server we decided it is time to make our own one. S
  * FontAwesome
  * RiotSharp
 
+# Pictures
+* ### Unregistered user
+### Home Page
+![Image Removed](https://i.imgur.com/MMpijqq.png)
+
+* ### Registered user
+### Home Page
+![Image Removed](https://i.imgur.com/DExKMTn.png)
+
+* #### Goko.gg (League Of Legends)
+### Goko.gg Home Page
+![Image Removed](https://i.imgur.com/x5zc5Ec.png)
+### New See more
+![Image Removed](https://i.imgur.com/KCpiCz3.png)
+### Match History Viewer
+![Image Removed](https://i.imgur.com/pZAGs2P.png)
+### Matches
+![Image Removed](https://i.imgur.com/dTwdY2z.png)
+### Collection
+![Image Removed](https://i.imgur.com/W2CsscT.png)
+### Game Details
+![Image Removed](https://i.imgur.com/lnF6W5j.png)
+
+
+* #### Goko.rp (FiveM)
+### Goko.rp Home Page
+![Image Removed](https://i.imgur.com/tdpYTI8.png)
+### Forum
+![Image Removed](https://i.imgur.com/Exfyhbs.png)
+### Submit Post
+![Image Removed](https://i.imgur.com/Tel1e7Q.png)
+### Post Details
+![Image Removed](https://i.imgur.com/3l7lbyw.png)
+### My Posts
+![Image Removed](https://i.imgur.com/luZADUJ.png)
+### Applications
+![Image Removed](https://i.imgur.com/QZ3gn2S.png)
+### Rules
+![Image Removed](https://i.imgur.com/1MjQ2gu.png)
+### Players
+![Image Removed](https://i.imgur.com/CqFO8pX.png)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
