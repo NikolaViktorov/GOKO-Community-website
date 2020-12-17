@@ -10,10 +10,6 @@
     {
         <h2 class="text-md-center"> You do not have any games in your collection, try adding some from <a href="/LOL/lolapp" class="btn btn-info text-uppercase">League of Legends match history viewer</a> </h2>
     }
-    else
-    {
-        <a href="/LOL/lolapp" class="btn btn-info text-uppercase">Back</a>
-    }
 
     @foreach (var modelState in ViewData.ModelState.Values)
     {
@@ -78,15 +74,19 @@
                 <td>
                     <div id="wrapper">
                         <div id="first">
-                            <a href="/LOL/CollectionDetails?gameId=@game.GameId&regionId=@game.RegionId" class="btn btn-info text-uppercase">Details</a>
+                            <a href="/LOL/CollectionDetails?gameId=@game.GameId&regionId=@game.RegionId" class="btn forum-go-back-btn text-uppercase">Details</a>
                         </div>
                         <div id="second">
-                            <a href="/LOL/Remove?gameId=@game.GameId" class="btn btn-info text-uppercase">Remove From Collection</a>
+                            <a href="/LOL/Remove?gameId=@game.GameId" class="btn forum-go-back-btn text-uppercase">Remove From Collection</a>
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
     }
+
+    <div class="button-holder">
+        <a href="/LOL/lolapp" class="btn forum-go-back-btn text-uppercase"><-- Go back</a>
+    </div>
 
 </main>

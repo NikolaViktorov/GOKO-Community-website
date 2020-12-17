@@ -258,6 +258,19 @@ td, th {
     margin-left: 15px;
 }
 
+.deatils-btn-container a {
+    text-decoration: none;
+}
+
+.deatils-btn-container a:hover {
+    text-decoration: none;
+    color: rgb(120, 112, 96);
+}
+
+.forum-go-back-btn:hover {
+    color: rgb(120, 112, 96);
+}
+
 @-webkit-keyframes fade {
     from {
         opacity: .4
