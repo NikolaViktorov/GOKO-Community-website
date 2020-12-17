@@ -48,11 +48,11 @@ After long playing in random server we decided it is time to make our own one. S
 ### Match History Viewer
 ![Image Removed](https://i.imgur.com/pZAGs2P.png)
 ### Matches
-![Image Removed](https://i.imgur.com/dTwdY2z.png)
+![Image Removed](https://i.imgur.com/g855bVd.png)
 ### Collection
-![Image Removed](https://i.imgur.com/W2CsscT.png)
+![Image Removed](https://i.imgur.com/31S8PcC.png)
 ### Game Details
-![Image Removed](https://i.imgur.com/lnF6W5j.png)
+![Image Removed](https://i.imgur.com/sSFVGkz.png)
 
 
 * #### Goko.rp (FiveM)
