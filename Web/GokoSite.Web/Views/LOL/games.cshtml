@@ -2,9 +2,6 @@
 
 <main class="mt-3">
     <h1 class="text-center suls-text-color">GOKO.GG</h1>
-    <div class="button-holder">
-        <a href="/LOL/lolapp" class="btn btn-info text-uppercase">Back</a>
-    </div>
     @foreach (HomePageGameViewModel game in Model)
     {
         <div class="game-table">
@@ -20,11 +17,11 @@
                     }
                     else
                     {
-                    <th class="Win">Victory</th>
-                    <th class="Win"></th>
-                    <th></th>
-                    <th class="Fail">Defeat</th>
-                    <th class="Fail"></th>
+                        <th class="Win">Victory</th>
+                        <th class="Win"></th>
+                        <th></th>
+                        <th class="Fail">Defeat</th>
+                        <th class="Fail"></th>
                     }
                 </tr>
                 <tr>
@@ -36,32 +33,32 @@
                 </tr>
                 @for (int i = 0; i < 5; i++)
                 {
-                    <tr >
+                    <tr>
                         <td class="blueTeam">
-                        <img src="@game.BlueTeam.Players[i].ProfileIconUrl" class="playerIcon">
-                        @game.BlueTeam.Players[i].Username
-                    </td>
-                    <td class="blueTeam">
-                        <img src="@game.BlueTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
-                        @game.BlueTeam.Players[i].Champion.ChampionName
-                    </td>
-                    <td></td>
-                    <td class="redTeam">
-                        <img src="@game.RedTeam.Players[i].ProfileIconUrl" class="playerIcon">
-                        @game.RedTeam.Players[i].Username
-                    </td>
-                    <td class="redTeam">
-                        <img src="@game.RedTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
-                        @game.RedTeam.Players[i].Champion.ChampionName
-                    </td>
+                            <img src="@game.BlueTeam.Players[i].ProfileIconUrl" class="playerIcon">
+                            @game.BlueTeam.Players[i].Username
+                        </td>
+                        <td class="blueTeam">
+                            <img src="@game.BlueTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
+                            @game.BlueTeam.Players[i].Champion.ChampionName
+                        </td>
+                        <td></td>
+                        <td class="redTeam">
+                            <img src="@game.RedTeam.Players[i].ProfileIconUrl" class="playerIcon">
+                            @game.RedTeam.Players[i].Username
+                        </td>
+                        <td class="redTeam">
+                            <img src="@game.RedTeam.Players[i].Champion.ChampionIconUrl" class="playerIcon">
+                            @game.RedTeam.Players[i].Champion.ChampionName
+                        </td>
                     </tr>
-        
+
                 }
                 <tr>
                     <td>
                         <div id="wrapper">
                             <div id="second">
-                                <a href="/LOL/AddToCollection?gameId=@game.GameId&regionId=@game.RegionId" class="btn btn-info text-uppercase">Add To Collection</a>
+                                <a style="width: 350px;" href="/LOL/AddToCollection?gameId=@game.GameId&regionId=@game.RegionId" class="btn forum-go-back-btn text-uppercase">Add To Collection</a>
                             </div>
                         </div>
                     </td>
@@ -69,4 +66,8 @@
             </table>
         </div>
     }
+
+    <div class="button-holder">
+        <a href="/LOL/lolapp" class="btn forum-go-back-btn text-uppercase"><-- Go Back</a>
+    </div>
 </main>

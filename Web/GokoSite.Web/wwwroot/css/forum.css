@@ -27,17 +27,28 @@
 }
 
 .notLogged {
+    padding: 10px, 10px, 10px, 10px;
+    background-color: #2b2b2b;
+    color: white;
     font-size: 28px;
     text-align: center;
 }
 
-.container-notlogged-images {
+.text-container-notlogged {
+    width: 70%;
+    text-align: center;
+    margin-left: 200px;
+}
 
+.container-notlogged-images {
+    margin-top: 70px;
+    float: right;
 }
 
 .container-notlogged-images img {
     margin-left: 15.2%;
     width: 400px;
+    margin-top: 20px;
     max-height: 1000px;
 }
 
@@ -90,6 +101,7 @@
 
 .rp-home-page-item-box {
     max-width: 35%;
+    max-height: 500px;
     margin-right: auto;
     margin-top: 2%;
 }

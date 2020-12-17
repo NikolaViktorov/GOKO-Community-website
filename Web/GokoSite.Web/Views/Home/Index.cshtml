@@ -26,24 +26,36 @@
         @if (!this.SignInManager.IsSignedIn(this.User))
         {
             <div class="container-notlog">
+                <div class="notLogged">
                 <div class="container-notlogged-images">
                     <img src="~/images/rp/bg.jpg" />
                     <img src="~/images/img1.jpg" />
                 </div>
-                <div class="notLogged">
-                    This website is made specifically for the community Goko. Most of its goals was to suit
-                    and entertain users from Goko or just people that share our interests.
+                <br />
+                    <h2 style="margin-left: 200px;" class="text-center">
+                        Goko Community
+                    </h2>
                     <br />
-                    This community is mostly based on gaming for League of Legends and FiveM.
+                    <div class="text-container-notlogged">
+                        This website is made specifically for the community Goko. Most of its goals was to suit
+                        and entertain users from Goko or just people that share our interests.
+                        <br />
+                        This community is mostly based on gaming for League of Legends and FiveM.
+                        <br />
+                        To see more about the functionality of this site just log in or register if you do not have an account!
+                    </div>
                     <br />
-                    To see more about the functionality of this site just log in or register if you do not have an account!
+                    <br />
+                    <h3 class="text-center">
+                        <a style="margin-right: 30%;" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </h3>
+                    <br />
+
                 </div>
             </div>
 
-            <h3 class="text-center">
-                <a style="margin-right: 30%;" asp-area="Identity" asp-page="/Account/Login">Login</a>             
-                <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-            </h3>
+
         }
         else
         {
