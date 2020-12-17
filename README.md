@@ -57,13 +57,13 @@ After long playing in random server we decided it is time to make our own one. S
 
 * #### Goko.rp (FiveM)
 ### Goko.rp Home Page
-![Image Removed](https://i.imgur.com/tdpYTI8.png)
+![Image Removed](https://i.imgur.com/va40FGW.png)
 ### Forum
-![Image Removed](https://i.imgur.com/Exfyhbs.png)
+![Image Removed](https://i.imgur.com/Bjp7TZF.png)
 ### Submit Post
-![Image Removed](https://i.imgur.com/Tel1e7Q.png)
+![Image Removed](https://i.imgur.com/Czpfh53.png)
 ### Post Details
-![Image Removed](https://i.imgur.com/3l7lbyw.png)
+![Image Removed](https://i.imgur.com/C2YjLRF.png)
 ### My Posts
 ![Image Removed](https://i.imgur.com/luZADUJ.png)
 ### Applications
@@ -71,7 +71,7 @@ After long playing in random server we decided it is time to make our own one. S
 ### Rules
 ![Image Removed](https://i.imgur.com/1MjQ2gu.png)
 ### Players
-![Image Removed](https://i.imgur.com/CqFO8pX.png)
+![Image Removed](https://i.imgur.com/Hde5vyZ.png)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
