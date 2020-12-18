@@ -28,9 +28,5 @@
             return new ChallengeResult(provider, properties);
         }
 
-        public IActionResult Profile()
-        {
-            return this.View();
-        }
     }
 }

@@ -15,6 +15,11 @@ td {
     background-color: rgb(21, 170, 21);
 }
 
+.titleBox {
+    background-color: black;
+    color: white;
+}
+
 .Fail {
     background-color: rgb(233, 39, 39);
 }

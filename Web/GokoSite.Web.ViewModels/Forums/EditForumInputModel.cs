@@ -11,6 +11,7 @@
         public string Topic { get; set; }
 
         [Required]
+        [MaxLength(550)]
         public string Text { get; set; }
     }
 }

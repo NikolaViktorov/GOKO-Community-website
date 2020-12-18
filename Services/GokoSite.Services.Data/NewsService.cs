@@ -36,7 +36,7 @@
                 Content = input.Content,
                 Image = input.Image,
                 UserId = userId,
-                UploadedOn = DateTime.UtcNow,
+                UploadedOn = DateTime.Now,
             };
 
             await this.db.News.AddAsync(newDb);

@@ -26,7 +26,7 @@
             this.newsService = newsService;
             this.forumsService = forumsService;
         }
-
+        
         public IActionResult AdminPanel()
         {
             if (!this.User.IsInRole("Administrator"))
