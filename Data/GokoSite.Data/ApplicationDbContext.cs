@@ -10,6 +10,7 @@
     using GokoSite.Data.Models;
     using GokoSite.Data.Models.LoL;
     using GokoSite.Data.Models.News;
+    using GokoSite.Data.Models.Products;
     using GokoSite.Data.Models.RP;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Product> Products { get; set; }
 
         public DbSet<New> News { get; set; }
 

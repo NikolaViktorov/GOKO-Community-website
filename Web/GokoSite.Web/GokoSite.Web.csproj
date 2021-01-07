@@ -78,6 +78,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\productImages\" />
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,21 @@
+﻿@using GokoSite.Web.ViewModels.Products
+
+<h1>Products home page</h1>
+@foreach (ProductViewModel product in Model)
+{
+    <div>
+        <h1>
+            @product.Name
+        </h1>
+        <a href="/Products/Product?id=@product.ProductId">Виж още!</a>
+        <img src="~/productImages/@product.MainImage"/>
+    </div>
+    
+
+}
+
+
+@if (this.User.IsInRole("Administrator"))
+{
+    <a asp-area="" asp-controller="Products" asp-action="AddProduct">Добави продукт</a>
+}

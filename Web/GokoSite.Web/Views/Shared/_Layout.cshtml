@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/forum.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/lolapp.css" rel="stylesheet" asp-append-version="true" />
@@ -26,57 +26,60 @@
             <div class="collaps navbar-collapse" id="navbarSupportedContent">
                 @if (this.SignInManager.IsSignedIn(this.User))
                 {
-                    <ul class="navbar-nav ml-auto">
-                        @if (this.User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Administration" asp-action="AdminPanel">Admin Panel</a>
-                            </li>
-                        }
+                <ul class="navbar-nav ml-auto">
+                    @if (this.User.IsInRole("Administrator"))
+                    {
                         <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link" href="/">
-                                    Home
-                                    <i class="fa fa-caret-down"></i>
-                                </a>
-                                <div class="dropdown-content">
-                                    <a href="/Home/Contact">Contact</a>
-                                    <a href="/Identity/Account/Manage">Profile</a>
-                                </div>
+                            <a class="nav-link" asp-area="" asp-controller="Administration" asp-action="AdminPanel">Admin Panel</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link" href="/">
+                                Home
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="/Home/Contact">Contact</a>
+                                <a href="/Identity/Account/Manage">Profile</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link" href="/RP/Home">
-                                    GOKO.RP
-                                    <i class="fa fa-caret-down"></i>
-                                </a>
-                                <div class="dropdown-content">
-                                    <a href="/RP/Rules">Server rules</a>
-                                    <a href="/RP/Forum">Forum</a>
-                                    <a href="/RP/Players">Online players</a>
-                                    <a href="/RP/WhitelistApps">Applications</a>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link" href="/RP/Home">
+                                GOKO.RP
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="/RP/Rules">Server rules</a>
+                                <a href="/RP/Forum">Forum</a>
+                                <a href="/RP/Players">Online players</a>
+                                <a href="/RP/WhitelistApps">Applications</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link" href="/LOL/Home">
-                                    GOKO.GG
-                                    <i class="fa fa-caret-down"></i>
-                                </a>
-                                <div class="dropdown-content">
-                                    <a href="/LOL/lolapp">Match history</a>
-                                    <a href="/LOL/Collection">Collection</a>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link" href="/LOL/Home">
+                                GOKO.GG
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="/LOL/lolapp">Match history</a>
+                                <a href="/LOL/Collection">Collection</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
-                                <button type="submit" class="nav-link btn btn-link">Logout</button>
-                            </form>
-                        </li>
-                    </ul> }
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Home">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                        </form>
+                    </li>
+                </ul> }
                 else
                 {
                     <ul class="navbar-nav ml-auto">

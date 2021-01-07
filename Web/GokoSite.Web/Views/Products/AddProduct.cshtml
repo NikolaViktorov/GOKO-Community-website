@@ -1,0 +1,40 @@
+﻿@using GokoSite.Web.ViewModels.Products;
+
+@model AddProductInputModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 style="text-align: center; color: lightgray">Добави продукт</h1>
+        <form class="mx-auto half-width col-5" enctype="multipart/form-data" method="post" asp-controller="Products" asp-action="AddProduct">
+            <div class="top-border-line primary-separator"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="suls-text-color">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name...">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="wrap-input2 validate-input" data-validate="Description is required">
+                <textarea asp-for="Description" class="input2" cols="30" rows="5"></textarea>
+                <span class="focus-input2" data-placeholder="Description"></span>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DownloadLink" class="suls-text-color">Download link</label>
+                <input asp-for="DownloadLink" class="form-control" placeholder="DownloadLink...">
+                <span asp-validation-for="DownloadLink" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MainImage" class="suls-text-color">MainImage</label>
+                <input asp-for="MainImage" class="form-control">
+                <span asp-validation-for="MainImage" class="text-danger"></span>
+            </div>
+
+            <div class="top-border-line primary-separator"></div>
+
+            <button type="submit" class="btn forum-add-bg-color">Добави</button>
+        </form>
+    </div>
+</div>

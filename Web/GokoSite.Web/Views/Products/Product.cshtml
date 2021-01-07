@@ -1,0 +1,14 @@
+﻿@using GokoSite.Web.ViewModels.Products
+
+@model ProductDetailsViewModel
+
+<div>
+    <h1>
+        @Model.Name
+    </h1>
+    <div>
+        @Model.Description
+    </div>
+    <a target="_blank" href="@Model.DownloadLink">Изтегли</a>
+    <img src="~/productImages/@Model.MainImage" />
+</div>
